@@ -4,5 +4,5 @@
 class Stock {
 public:
 	Stock();
-	std::map <Product*, int quantity> storage;
+	std::map <Product*, int> storage;
 };
