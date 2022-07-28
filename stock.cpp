@@ -1,22 +1,28 @@
 ﻿#include "stock.h"
+#include "Product.h"
 
 
 Stock::Stock() {
 	
 	//Product::Product(float productPrice, std::string productName, std::string productCategory, std::string productSupplier)
 
-RTV:
-	Telewizor, 2000.00, RTV, Samsung,
-		Telefony, 300, RTV, LG
-		Laptopy, 3000.00, RTV, Samsung
-		Słuchawki, 100, RTV, LG
-		Radio, 200, RTV, Bosch
+	Product Sekator(30, "Sekator", "OGROD", "Sharp");
+	Product Kosiarka(1200, "Kosiarka", "OGROD", "Parkside");
+	Product Myjka(700, "Myjka", "OGROD", "Karcher");
+	Product Lopata(40, "Łopata", "OGROD", "Bosch");
+	Product Grabie(30, "Sekator", "OGROD", "Sharp");
 
-		Product Telewizor(2000.00, Telewizor, RTV, Samsung);
-		Product Telefony(300.00, Telefon, RTV, LG);
-		Product Laptopy(3000.00, Laptop, RTV, Samsung);
-		Product Sluchawki(100.00, Sluchawki, RTV, LG);
-		Product Radio(200.00, Radio, RTV, Bosch);
+	Product* Sekator_ptr = &Sekator;
+	Product* Kosiarka_ptr = &Kosiarka;
+	Product* Myjka_ptr = &Myjka;
+	Product* Lopata_ptr = &Lopata;
+	Product* Grabie_ptr = &Grabie;
 
-	storage.insert(pro)
+	storage.insert({ Sekator_ptr, 9 });
+	storage.insert({ Sekator_ptr, 2 });
+	storage.insert({ Sekator_ptr, 24 });
+	storage.insert({ Sekator_ptr, 5 });
+	storage.insert({ Sekator_ptr, 6 });
+
+
 }
