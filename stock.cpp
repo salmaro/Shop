@@ -1,6 +1,6 @@
 ﻿
 #include "stock.h"
-#include "Product.h"
+
 
 
 
@@ -10,7 +10,7 @@ Stock::Stock() {
 	Product sekator(30, "Sekator", "OGROD", "Sharp");
 	Product kosiarka(1200, "Kosiarka", "OGROD", "Parkside");
 	Product myjka(700, "Myjka", "OGROD", "Karcher");
-	Product lopata(40, "Łopata", "OGROD", "Bosch");
+	Product lopata(40, "Lopata", "OGROD", "Bosch");
 	Product grabie(30, "Sekator", "OGROD", "Sharp");
 
 	Product* sekator_ptr = &sekator;
