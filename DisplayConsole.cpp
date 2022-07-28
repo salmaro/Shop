@@ -108,7 +108,7 @@ void DisplayConsole::printTypeOfSorting(std::map <Product*, int> storage) {
 		//sortPriceDescending(storage);
 		break;
 	case 2:
-		sortPriceAscending( storage);
+		sortPriceAscending(storage);
 		break;
 	case 3:
 		//sortInAlphabeticalOrder( storage);
