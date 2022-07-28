@@ -1,5 +1,6 @@
-﻿#include "stock.h"
-#include "Product.h"
+﻿
+#include "stock.h"
+
 
 
 Stock::Stock() {

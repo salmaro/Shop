@@ -1,14 +1,16 @@
 #pragma once
+#include "Client.h"
 #include "User.h"
 #include "stock.h"
 #include <map>
+#include <iostream>
 
 class Admin :
     public User
 {
 public:
-    void stock::stock addStock();
-    void stock::removeStock();
+
+    void addStock(Stock*);  // TODO dopisac userInterface do Admina
+    void removeStock(Stock*);
     void resetPassword(Client* client);
-    virtual void login();
 };

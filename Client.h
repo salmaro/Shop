@@ -4,12 +4,7 @@
 
 class Client :
     public User
-{
+{ 
+    private:
     std::string deliveryAddress;
-
-public:
-    Client(std::string name, std::string password);
-    std::string getPassword();
-    void setPassword(std::string password);
-    virtual void login();
 };
