@@ -1,6 +1,8 @@
 #include "DisplayConsole.h"
 #include <map>
 #include <algorithm>
+#include "Stock.h"
+#include "Product.h"
 
 void DisplayConsole::printWelcomeScreen() {
 	std::cout << "\t+--------------------------------------------+\n";
@@ -29,12 +31,12 @@ void DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 		}
 		else {
 			std::cout << "\n\t!!! Wrong login or password !!! \nTRY AGAIN\n";
-			cin.clear();
-			cin.ignore(100, '\n');
+			std::cin.clear();
+			std::cin.ignore(100, '\n');
 		}
 
 	} while ((userInputLogin != admin.getLogin() || userInputPassword != admin.getPassword()) ||
-		(userInputLogin != client.getLogin() || userInputPassword != client.getPassword());
+		(userInputLogin != client.getLogin() || userInputPassword != client.getPassword()));
 }
 
 void DisplayConsole::adminPanel() {
@@ -47,7 +49,7 @@ void DisplayConsole::adminPanel() {
 	std::cout << "\t\t2.Remove product from stock\n";
 	std::cout << "\t\t3.Reset password\n\n";
 
-	switch () {
+	switch (adminChoice) {
 	case 1:
 		//metoda ktora bedzie dodawac produkty do klasy Stack -->stock
 		break;
@@ -81,7 +83,7 @@ void DisplayConsole::userPanel() {
 	}
 }
 
-void DisplayConsole::printTypeOfSorting(std::map <*item, int> storage) {
+void DisplayConsole::printTypeOfSorting(std::map <Product*, int> storage) {
 	int choiceOfSorting;
 
 	std::cout << "\n\t----- Choose type of sorting -----\n\n";
@@ -93,22 +95,22 @@ void DisplayConsole::printTypeOfSorting(std::map <*item, int> storage) {
 
 	switch (choiceOfSorting) {
 	case 1:
-		sortPriceDescending(std::map <*item, int> storage);
+		sortPriceDescending(std::map <Product*, int> storage);
 		break;
 	case 2:
-		sortPriceAscending(std::map <*item, int> storage);
+		sortPriceAscending(std::map <Product*, int> storage);
 		break;
 	case 3:
-		sortInAlphabeticalOrder(std::map <*item, int> storage);
+		sortInAlphabeticalOrder(std::map <Product*, int> storage);
 		break;
 	case 4:
-		sortInReverseAlphabeticalOrder(std::map <*item, int> storage);
+		sortInReverseAlphabeticalOrder(std::map <Product*, int> storage);
 		break;
 	default: std::cout << "\nThere is no such option. Try again \n\n";
 	}
 }
 
-void DisplayConsole::printTypeOfFiltering(std::map <*item, int> stock)
+void DisplayConsole::printTypeOfSorting(std::map <Product*, int> storage)
 {
 	int choiceOfFiltering;
 
@@ -119,7 +121,7 @@ void DisplayConsole::printTypeOfFiltering(std::map <*item, int> stock)
 
 	switch (choiceOfFiltering) {
 	case 1:
-		filterByCategory(std::map <*item, int> storage);
+		filterByCategory(std::map <Product*, int> storage);
 		break;
 	case 2:
 		filterBySupplier(std::map <*item, int> storage);
@@ -128,7 +130,7 @@ void DisplayConsole::printTypeOfFiltering(std::map <*item, int> stock)
 	}
 }
 
-void DisplayConsole::sortPriceAscending(std::map<*item, int> storage)
+void DisplayConsole::sortPriceAscending(std::map <Product*, int> storage)
 {
 	//sort();
 }
