@@ -41,12 +41,28 @@ Stock::Stock() {
 		storage.insert({ Sluchawki_ptr, 6 });
 		storage.insert({ Radio_ptr, 4 });
 
+	Product lodowki(1500.00, "Lodowka", "AGD", "LG");
+	Product mikrofalowki(600.00, "Mikrofalowka", "AGD", "Bosch");
+	Product odkurzacze(700.00, "Odkurzacz", "AGD", "Sharp");
+	Product piekarniki(1200.00, "Piekarnik", "AGD", "Bosch");
+	Product pralki(2300.00, "Pralka", "AGD", "Sharp");
+
+	Product* lodowki_ptr = &lodowki;
+	Product* mikrofalowki_ptr = &mikrofalowki;
+	Product* odkurzacze_ptr = &odkurzacze;
+	Product* piekarniki_ptr = &piekarniki;
+	Product* pralki_ptr = &pralki;
 		Product Samochodziki(20.00, "Samochod", "TOYS", "Sharp");
 		Product Klocki(200.00, "Klocki", "TOYS", "LG");
 		Product Lalki(40.00, "Lalka", "TOYS", "Samsung");
 		Product Puzzle(30.00, "Puzzle", "TOYS", "Bosch");
 		Product Maskotki(100.00, "Maskotka", "TOYS", "Sharp");
 
+	storage.insert({ lodowki_ptr,5 });
+	storage.insert({ mikrofalowki_ptr,5 });
+	storage.insert({ odkurzacze_ptr,5 });
+	storage.insert({ piekarniki_ptr,5 });
+	storage.insert({ pralki_ptr,5 });
 		Product* Samochodziki_ptr{ &Samochodziki };
 		Product* Klocki_ptr{ &Klocki };
 		Product* Lalki_ptr{ &Lalki};
