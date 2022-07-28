@@ -22,5 +22,21 @@ Stock::Stock() {
 		storage.insert({ Sluchawki_ptr, 6 });
 		storage.insert({ Radio_ptr, 4 });
 
-	storage.insert(pro)
+		Product Samochodziki(20.00, "Samochod", "TOYS", "Sharp");
+		Product Klocki(200.00, "Klocki", "TOYS", "LG");
+		Product Lalki(40.00, "Lalka", "TOYS", "Samsung");
+		Product Puzzle(30.00, "Puzzle", "TOYS", "Bosch");
+		Product Maskotki(100.00, "Maskotka", "TOYS", "Sharp");
+
+		Product* Samochodziki_ptr{ &Samochodziki };
+		Product* Klocki_ptr{ &Klocki };
+		Product* Lalki_ptr{ &Lalki};
+		Product* Puzzle_ptr{ &Puzzle};
+		Product* Maskotki_ptr{ &Maskotki };
+
+		storage.insert({ Samochodziki_ptr, 7 });
+		storage.insert({ Klocki_ptr, 5 });
+		storage.insert({ Lalki_ptr, 8 });
+		storage.insert({ Puzzle_ptr, 6 });
+		storage.insert({ Maskotki_ptr, 4 });
 }
