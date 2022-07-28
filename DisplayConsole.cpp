@@ -1,16 +1,14 @@
 #include "DisplayConsole.h"
-#include <map>
-#include <algorithm>
-#include "Stock.h"
-#include "Product.h"
 
-void DisplayConsole::printWelcomeScreen() {
+
+void DisplayConsole::printWelcomeScreen(Admin* admin, Client* client) {
+
 	std::cout << "\t+--------------------------------------------+\n";
 	std::cout << "\t|                                            |\n";
 	std::cout << "\t|                 SHOPePePePe                |\n";
 	std::cout << "\t|                                            |\n";
 	std::cout << "\t+--------------------------------------------+\n";
-	loginAndPassword();
+	loginAndPassword(admin, client);
 }
 
 void DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
@@ -23,10 +21,10 @@ void DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 	std::cin >> userInputPassword;
 
 	do {
-		if (userInputLogin == admin.getLogin() && userInputPassword == admin.getPassword()) {
+		if (userInputLogin == admin->getLogin() && userInputPassword == admin->getPassword()) {
 			adminPanel();
 		}
-		else if (userInputLogin == client.getLogin() && userInputPassword == client.getPassword()) {
+		else if (userInputLogin == client->getLogin() && userInputPassword == client->getPassword()) {
 			userPanel();
 		}
 		else {
@@ -35,19 +33,21 @@ void DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 			std::cin.ignore(100, '\n');
 		}
 
-	} while ((userInputLogin != admin.getLogin() || userInputPassword != admin.getPassword()) ||
-		(userInputLogin != client.getLogin() || userInputPassword != client.getPassword()));
+	} while ((userInputLogin != admin->getLogin() || userInputPassword != admin->getPassword()) ||
+		(userInputLogin != client->getLogin() || userInputPassword != client->getPassword()));
 }
 
 void DisplayConsole::adminPanel() {
 
-	int adminChoice;
+	int adminChoice{};
 	system("cls");
 	std::cout << "\n\tADMIN PANEL\n";
 	std::cout << "\tWhat do you want to do?\n";
 	std::cout << "\t\t1.Add product to stock\n";
 	std::cout << "\t\t2.Remove product from stock\n";
 	std::cout << "\t\t3.Reset password\n\n";
+
+	std::cin >> adminChoice;
 
 	switch (adminChoice) {
 	case 1:
@@ -95,22 +95,22 @@ void DisplayConsole::printTypeOfSorting(std::map <Product*, int> storage) {
 
 	switch (choiceOfSorting) {
 	case 1:
-		sortPriceDescending(std::map <Product*, int> storage);
+		//sortPriceDescending(storage);
 		break;
 	case 2:
-		sortPriceAscending(std::map <Product*, int> storage);
+		sortPriceAscending(storage);
 		break;
 	case 3:
-		sortInAlphabeticalOrder(std::map <Product*, int> storage);
+		//sortInAlphabeticalOrder( storage);
 		break;
 	case 4:
-		sortInReverseAlphabeticalOrder(std::map <Product*, int> storage);
+		//sortInReverseAlphabeticalOrder(storage);
 		break;
 	default: std::cout << "\nThere is no such option. Try again \n\n";
 	}
 }
 
-void DisplayConsole::printTypeOfSorting(std::map <Product*, int> storage)
+void DisplayConsole::printTypeOfFiltering(std::map <Product*, int> storage)
 {
 	int choiceOfFiltering;
 
@@ -121,10 +121,10 @@ void DisplayConsole::printTypeOfSorting(std::map <Product*, int> storage)
 
 	switch (choiceOfFiltering) {
 	case 1:
-		filterByCategory(std::map <Product*, int> storage);
+		//filterByCategory(storage);
 		break;
 	case 2:
-		filterBySupplier(std::map <*item, int> storage);
+		//filterBySupplier(storage);
 		break;
 	default: std::cout << "There is no such option. Try again.\n\n";
 	}

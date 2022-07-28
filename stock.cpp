@@ -1,9 +1,10 @@
-﻿#include "stock.h"
-#include "Product.h"
+﻿
+#include "stock.h"
+
 
 
 Stock::Stock() {
-	
+
 
 	Product sekator(30, "Sekator", "OGROD", "Sharp");
 	Product kosiarka(1200, "Kosiarka", "OGROD", "Parkside");
@@ -18,12 +19,12 @@ Stock::Stock() {
 	Product* grabie_ptr = &grabie;
 
 	storage.insert({ sekator_ptr, 9 });
-	storage.insert({ sekator_ptr, 2 });
-	storage.insert({ sekator_ptr, 24 });
-	storage.insert({ sekator_ptr, 5 });
-	storage.insert({ sekator_ptr, 6 });
+	storage.insert({ kosiarka_ptr, 2 });
+	storage.insert({ myjka_ptr, 24 });
+	storage.insert({ lopata_ptr, 5 });
+	storage.insert({ grabie_ptr, 6 });
 
-	Product telewizory(2000.00, "Telewizor","RTV", "Samsung");
+	Product telewizory(2000.00, "Telewizor", "RTV", "Samsung");
 	Product telefony(300.00, "Telefon", "RTV", "LG");
 	Product laptopy(3000.00, "Laptop", "RTV", "Samsung");
 	Product sluchawki(100.00, "Sluchawki", "RTV", "LG");
@@ -67,8 +68,8 @@ Stock::Stock() {
 
 	Product* samochodziki_ptr{ &samochodziki };
 	Product* klocki_ptr{ &klocki };
-	Product* lalki_ptr{ &lalki};
-	Product* puzzle_ptr{ &puzzle};
+	Product* lalki_ptr{ &lalki };
+	Product* puzzle_ptr{ &puzzle };
 	Product* maskotki_ptr{ &maskotki };
 
 	storage.insert({ samochodziki_ptr, 7 });

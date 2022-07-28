@@ -4,7 +4,11 @@
 class User
 {
 public:
-	virtual void login() = 0;
+
+	void setPassword(std::string);
+	void setLogin(std::string);
+	std::string getLogin();
+	std::string getPassword();
 
 protected:
 	std::string name;

@@ -1,6 +1,14 @@
 #include "Admin.h"
-#include "Client.h"
-#include <iostream>
+
+
+void Admin::addStock(Stock*)
+{
+
+}
+
+void Admin::removeStock(Stock*)
+{
+}
 
 void Admin::resetPassword(Client* client)
 {
@@ -10,16 +18,4 @@ void Admin::resetPassword(Client* client)
 	std::cin >> newPassword;
 	client->setPassword(newPassword);
 	std::cout << "Your password has been changed." << std::endl;
-}
-
-void Admin::login()
-{
-	std::string userInput;
-
-	std::cout << "Please enter your password: " << std::endl;
-	std::cin >> userInput;
-
-	while (userInput != password) {
-		std::cout << "Wrong password! Try again.";
-	}
 }
