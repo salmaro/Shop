@@ -8,7 +8,7 @@ Stock::Stock() {
 	Product sekator(30, "Sekator", "OGROD", "Sharp");
 	Product kosiarka(1200, "Kosiarka", "OGROD", "Parkside");
 	Product myjka(700, "Myjka", "OGROD", "Karcher");
-	Product lopata(40, "Łopata", "OGROD", "Bosch");
+	Product lopata(40, "Lopata", "OGROD", "Bosch");
 	Product grabie(30, "Sekator", "OGROD", "Sharp");
 
 	Product* sekator_ptr = &sekator;
@@ -29,13 +29,13 @@ Stock::Stock() {
 	Product sluchawki(100.00, "Sluchawki", "RTV", "LG");
 	Product radio(200.00, "Radio", "RTV", "Bosch");
 
-	Product* telwizory_ptr{ &telewizory };
+	Product* telewizory_ptr{ &telewizory };
 	Product* telefony_ptr{ &telefony };
 	Product* laptopy_ptr{ &laptopy };
 	Product* sluchawki_ptr{ &sluchawki };
 	Product* radio_ptr{ &radio };
 
-	storage.insert({ telwizory_ptr, 7 });
+	storage.insert({ telewizory_ptr, 7 });
 	storage.insert({ telefony_ptr, 5 });
 	storage.insert({ laptopy_ptr, 8 });
 	storage.insert({ sluchawki_ptr, 6 });

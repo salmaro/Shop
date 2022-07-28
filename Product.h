@@ -18,7 +18,4 @@ public:
 	std::string getCategory();
 	void setSupplier();
 	std::string getSupplier();
-	void setDescription();
-	std::string getDescription();
-
 };

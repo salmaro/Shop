@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include "UserInterface.h"
+#include "Admin.h"
+#include "Client.h"
 class DisplayConsole :
     public UserInterface
 {
@@ -11,17 +14,17 @@ public:
     void loginAndPassword(Admin* admin, Client* client);
     void adminPanel();
     void userPanel();
-    void printTypeOfSorting(std::map <*item, int> storage);
-    void printTypeOfFiltering(std::map <*item, int> stock);
-    void sortPriceAscending(std::map<*item, int> storage);
+    void printTypeOfSorting(std::map <Product*, int> storage);
+    void printTypeOfFiltering(std::map <Product*, int> storage);
+    void sortPriceAscending(std::map <Product*, int> storage);
 
 
     //TODO 
     void printCartContents();
-    void sortPriceDescending(std::map <*item, int> storage);
-    void sortPriceAscending(std::map <*item, int> storage);
-    void sortInAlphabeticalOrder(std::map <*item, int> storage);
-    void sortInReverseAlphabeticalOrder(std::map <*item, int> storage);
-    void filterBySupplier(std::map <*item, int> strage);
-    void filterByCategory(std::map <*item, int> storage);
+    void sortPriceDescending(std::map <Product*, int> storage);
+    void sortPriceAscending(std::map <Product*, int> storage);
+    void sortInAlphabeticalOrder(std::map <Product*, int> storage);
+    void sortInReverseAlphabeticalOrder(std::map <Product*, int> storage);
+    void filterBySupplier(std::map <Product*, int> storage);
+    void filterByCategory(std::map <Product*, int> storage);
 };
