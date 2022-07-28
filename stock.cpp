@@ -1,5 +1,6 @@
 ﻿
 #include "stock.h"
+#include "Product.h"
 
 
 
@@ -24,23 +25,23 @@ Stock::Stock() {
 	storage.insert({ lopata_ptr, 5 });
 	storage.insert({ grabie_ptr, 6 });
 
-	Product telewizory(2000.00, "Telewizor", "RTV", "Samsung");
-	Product telefony(300.00, "Telefon", "RTV", "LG");
-	Product laptopy(3000.00, "Laptop", "RTV", "Samsung");
-	Product sluchawki(100.00, "Sluchawki", "RTV", "LG");
-	Product radio(200.00, "Radio", "RTV", "Bosch");
+	Product Telewizory(2000.00, "Telewizor","RTV", "Samsung");
+	Product Telefony(300.00, "Telefon", "RTV", "LG");
+	Product Laptopy(3000.00, "Laptop", "RTV", "Samsung");
+	Product Sluchawki(100.00, "Sluchawki", "RTV", "LG");
+	Product Radio(200.00, "Radio", "RTV", "Bosch");
 
-	Product* telewizory_ptr{ &telewizory };
-	Product* telefony_ptr{ &telefony };
-	Product* laptopy_ptr{ &laptopy };
-	Product* sluchawki_ptr{ &sluchawki };
-	Product* radio_ptr{ &radio };
+	Product* Telwizory_ptr{ &Telewizory };
+	Product* Telefony_ptr{ &Telefony };
+	Product* Laptopy_ptr{ &Laptopy };
+	Product* Sluchawki_ptr{ &Sluchawki };
+	Product* Radio_ptr{ &Radio };
 
-	storage.insert({ telewizory_ptr, 7 });
-	storage.insert({ telefony_ptr, 5 });
-	storage.insert({ laptopy_ptr, 8 });
-	storage.insert({ sluchawki_ptr, 6 });
-	storage.insert({ radio_ptr, 4 });
+	storage.insert({ Telwizory_ptr, 7 });
+	storage.insert({ Telefony_ptr, 5 });
+	storage.insert({ Laptopy_ptr, 8 });
+	storage.insert({ Sluchawki_ptr, 6 });
+	storage.insert({ Radio_ptr, 4 });
 
 	Product lodowki(1500.00, "Lodowka", "AGD", "LG");
 	Product mikrofalowki(600.00, "Mikrofalowka", "AGD", "Bosch");
@@ -54,11 +55,11 @@ Stock::Stock() {
 	Product* piekarniki_ptr = &piekarniki;
 	Product* pralki_ptr = &pralki;
 
-	Product samochodziki(20.00, "Samochod", "TOYS", "Sharp");
-	Product klocki(200.00, "Klocki", "TOYS", "LG");
-	Product lalki(40.00, "Lalka", "TOYS", "Samsung");
-	Product puzzle(30.00, "Puzzle", "TOYS", "Bosch");
-	Product maskotki(100.00, "Maskotka", "TOYS", "Sharp");
+	Product Samochodziki(20.00, "Samochod", "TOYS", "Sharp");
+	Product Klocki(200.00, "Klocki", "TOYS", "LG");
+	Product Lalki(40.00, "Lalka", "TOYS", "Samsung");
+	Product Puzzle(30.00, "Puzzle", "TOYS", "Bosch");
+	Product Maskotki(100.00, "Maskotka", "TOYS", "Sharp");
 
 	storage.insert({ lodowki_ptr,5 });
 	storage.insert({ mikrofalowki_ptr,5 });
@@ -66,15 +67,15 @@ Stock::Stock() {
 	storage.insert({ piekarniki_ptr,5 });
 	storage.insert({ pralki_ptr,5 });
 
-	Product* samochodziki_ptr{ &samochodziki };
-	Product* klocki_ptr{ &klocki };
-	Product* lalki_ptr{ &lalki };
-	Product* puzzle_ptr{ &puzzle };
-	Product* maskotki_ptr{ &maskotki };
+	Product* Samochodziki_ptr{ &Samochodziki };
+	Product* Klocki_ptr{ &Klocki };
+	Product* Lalki_ptr{ &Lalki};
+	Product* Puzzle_ptr{ &Puzzle};
+	Product* Maskotki_ptr{ &Maskotki };
 
-	storage.insert({ samochodziki_ptr, 7 });
-	storage.insert({ klocki_ptr, 5 });
-	storage.insert({ lalki_ptr, 8 });
-	storage.insert({ puzzle_ptr, 6 });
-	storage.insert({ maskotki_ptr, 4 });
+	storage.insert({ Samochodziki_ptr, 7 });
+	storage.insert({ Klocki_ptr, 5 });
+	storage.insert({ Lalki_ptr, 8 });
+	storage.insert({ Puzzle_ptr, 6 });
+	storage.insert({ Maskotki_ptr, 4 });
 }
