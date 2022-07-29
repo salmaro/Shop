@@ -4,8 +4,8 @@
 
 class Product
 {
-	float price;
 	std::string name;
+	float price;
 	std::string category;
 	std::string supplier;
 

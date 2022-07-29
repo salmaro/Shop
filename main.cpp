@@ -21,6 +21,10 @@ int main() {
 
 	Admin* ptr_adminek{ &adminek };
 	Client* ptr_kliencik{ &kliencik };
-	
+	//Stock magazyn;
+	DisplayConsole dupa;
+	dupa.printWelcomeScreen(ptr_adminek, ptr_kliencik);
+	//dupa.printList(magazyn.getStorage());
+
 	return 0;
 }

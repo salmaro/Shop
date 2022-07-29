@@ -78,3 +78,8 @@ Stock::Stock() {
 	storage.insert({ puzzle_ptr, 6 });
 	storage.insert({ maskotki_ptr, 4 });
 }
+
+std::map<Product*, int> Stock::getStorage()
+{
+	return storage;
+}

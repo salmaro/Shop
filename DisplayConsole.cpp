@@ -1,6 +1,13 @@
 #include "DisplayConsole.h"
 
 
+void DisplayConsole::printList(std::map<Product*, int> storage)
+{
+	for (auto iter = storage.begin(); iter != storage.end(); ++iter) {
+		std::cout <<"Product: " << (iter->first) ->getName() << " " << "Magazine: " << iter->second << std::endl;
+	}
+}
+
 void DisplayConsole::printWelcomeScreen(Admin* admin, Client* client) {
 
 	std::cout << "\t+--------------------------------------------+\n";
@@ -67,11 +74,14 @@ void DisplayConsole::userPanel() {
 	std::cout << "\t\t2. Display cart\n";
 	std::cout << "\t\t3. Choose category\n\n>> ";
 
+	Stock magazyn;
 	int choice;
 	std::cin >> choice;
 
 	switch (choice) {
 	case 1:
+		printList(magazyn.getStorage());
+		std::cout << std::endl;
 		// print all product from stock
 		break;
 	case 2:
