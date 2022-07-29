@@ -17,7 +17,10 @@ public:
     //void chooseTypeOfSorting();
     //void chooseTypeOfFiltering();
 
+<<<<<<< HEAD
     void printList(std::map <Product*, int> storage);
+=======
+>>>>>>> 35b36c904bd8197dee37563a89751e2be58487d6
     void printWelcomeScreen(Admin*, Client*);
     void loginAndPassword(Admin* admin, Client* client);
     void adminPanel();

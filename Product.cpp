@@ -1,7 +1,11 @@
 #include "Product.h"
 
 Product::Product(float productPrice, std::string productName, std::string productCategory, std::string productSupplier)
+<<<<<<< HEAD
 	:price(productPrice),name(productName),category(productCategory), supplier(productSupplier)
+=======
+	:price(productPrice), name(productName), category(productCategory), supplier(productSupplier)
+>>>>>>> 35b36c904bd8197dee37563a89751e2be58487d6
 {
 
 };

@@ -1,6 +1,7 @@
 #include "DisplayConsole.h"
 
 
+<<<<<<< HEAD
 void DisplayConsole::printList(std::map<Product*, int> storage)
 {
 	for (auto iter = storage.begin(); iter != storage.end(); ++iter) {
@@ -8,6 +9,8 @@ void DisplayConsole::printList(std::map<Product*, int> storage)
 	}
 }
 
+=======
+>>>>>>> 35b36c904bd8197dee37563a89751e2be58487d6
 void DisplayConsole::printWelcomeScreen(Admin* admin, Client* client) {
 
 	std::cout << "\t+--------------------------------------------+\n";
