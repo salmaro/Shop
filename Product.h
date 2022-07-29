@@ -4,13 +4,14 @@
 
 class Product
 {
-	std::string name;
 	float price;
+	std::string name;
 	std::string category;
 	std::string supplier;
 
 public:
 	Product(float price, std::string name, std::string category, std::string supplier);
+	Product();
 	void setPrice();
 	float getPrice();
 	void setName();

@@ -12,11 +12,11 @@ Stock::Stock() {
 	Product lopata(40, "Lopata", "OGROD", "Bosch");
 	Product grabie(30, "Sekator", "OGROD", "Sharp");
 
-	Product* sekator_ptr = &sekator;
-	Product* kosiarka_ptr = &kosiarka;
-	Product* myjka_ptr = &myjka;
-	Product* lopata_ptr = &lopata;
-	Product* grabie_ptr = &grabie;
+	sekator_ptr = new Product(sekator);
+	kosiarka_ptr = new Product(kosiarka);
+	myjka_ptr = new Product(myjka);
+	lopata_ptr = new Product(lopata);
+	grabie_ptr = new Product(grabie);
 
 	storage.insert({ sekator_ptr, 9 });
 	storage.insert({ kosiarka_ptr, 2 });
@@ -24,17 +24,18 @@ Stock::Stock() {
 	storage.insert({ lopata_ptr, 5 });
 	storage.insert({ grabie_ptr, 6 });
 
+
 	Product telewizory(2000.00, "Telewizor","RTV", "Samsung");
 	Product telefony(300.00, "Telefon", "RTV", "LG");
 	Product laptopy(3000.00, "Laptop", "RTV", "Samsung");
 	Product sluchawki(100.00, "Sluchawki", "RTV", "LG");
 	Product radio(200.00, "Radio", "RTV", "Bosch");
 
-	Product* telewizory_ptr{ &telewizory };
-	Product* telefony_ptr{ &telefony };
-	Product* laptopy_ptr{ &laptopy };
-	Product* sluchawki_ptr{ &sluchawki };
-	Product* radio_ptr{ &radio };
+	telewizory_ptr = new Product(telewizory);
+	telefony_ptr = new Product(telefony);
+	laptopy_ptr = new Product(laptopy);
+	sluchawki_ptr = new Product(sluchawki);
+	radio_ptr = new Product(radio);
 
 	storage.insert({ telewizory_ptr, 7 });
 	storage.insert({ telefony_ptr, 5 });
@@ -48,17 +49,11 @@ Stock::Stock() {
 	Product piekarniki(1200.00, "Piekarnik", "AGD", "Bosch");
 	Product pralki(2300.00, "Pralka", "AGD", "Sharp");
 
-	Product* lodowki_ptr = &lodowki;
-	Product* mikrofalowki_ptr = &mikrofalowki;
-	Product* odkurzacze_ptr = &odkurzacze;
-	Product* piekarniki_ptr = &piekarniki;
-	Product* pralki_ptr = &pralki;
-
-	Product samochodziki(20.00, "Samochod", "TOYS", "Sharp");
-	Product klocki(200.00, "Klocki", "TOYS", "LG");
-	Product lalki(40.00, "Lalka", "TOYS", "Samsung");
-	Product puzzle(30.00, "Puzzle", "TOYS", "Bosch");
-	Product maskotki(100.00, "Maskotka", "TOYS", "Sharp");
+	lodowki_ptr = new Product (lodowki);
+	mikrofalowki_ptr = new Product (mikrofalowki);
+	odkurzacze_ptr = new Product (odkurzacze);
+	piekarniki_ptr = new Product (piekarniki);
+	pralki_ptr = new Product (pralki);
 
 	storage.insert({ lodowki_ptr,5 });
 	storage.insert({ mikrofalowki_ptr,5 });
@@ -66,11 +61,17 @@ Stock::Stock() {
 	storage.insert({ piekarniki_ptr,5 });
 	storage.insert({ pralki_ptr,5 });
 
-	Product* samochodziki_ptr{ &samochodziki };
-	Product* klocki_ptr{ &klocki };
-	Product* lalki_ptr{ &lalki};
-	Product* puzzle_ptr{ &puzzle};
-	Product* maskotki_ptr{ &maskotki };
+	Product samochodziki(20.00, "Samochod", "TOYS", "Sharp");
+	Product klocki(200.00, "Klocki", "TOYS", "LG");
+	Product lalki(40.00, "Lalka", "TOYS", "Samsung");
+	Product puzzle(30.00, "Puzzle", "TOYS", "Bosch");
+	Product maskotki(100.00, "Maskotka", "TOYS", "Sharp");
+
+	samochodziki_ptr = new Product(samochodziki);
+	klocki_ptr = new Product(klocki);
+	lalki_ptr = new Product(lalki);
+	puzzle_ptr = new Product(puzzle);
+	maskotki_ptr = new Product (maskotki );
 
 	storage.insert({ samochodziki_ptr, 7 });
 	storage.insert({ klocki_ptr, 5 });
@@ -79,7 +80,36 @@ Stock::Stock() {
 	storage.insert({ maskotki_ptr, 4 });
 }
 
-std::map<Product*, int> Stock::getStorage()
+Stock::~Stock()
+{
+
+	delete sekator_ptr;
+	delete kosiarka_ptr;
+	delete myjka_ptr;
+	delete lopata_ptr;
+	delete grabie_ptr;
+
+	delete telewizory_ptr;
+	delete telefony_ptr;
+	delete laptopy_ptr;
+	delete sluchawki_ptr;
+	delete radio_ptr;
+
+	delete lodowki_ptr;
+	delete mikrofalowki_ptr;
+	delete odkurzacze_ptr;
+	delete piekarniki_ptr;
+	delete pralki_ptr;
+
+	delete samochodziki_ptr;
+	delete klocki_ptr;
+	delete lalki_ptr;
+	delete puzzle_ptr;
+	delete maskotki_ptr;
+
+}
+
+std::map <Product*, int > Stock::getStorage()
 {
 	return storage;
 }

@@ -1,10 +1,15 @@
 #include "Product.h"
 
 Product::Product(float productPrice, std::string productName, std::string productCategory, std::string productSupplier)
-	:price(productPrice),name(productName),category(productCategory), supplier(productSupplier)
+	:price{ productPrice }, name{ productName }, category{ productCategory }, supplier{ productSupplier }
 {
 
-};
+}
+Product::Product()
+	:Product{0,"x","x","x"}
+{
+
+}
 
 void Product::setPrice()
 {

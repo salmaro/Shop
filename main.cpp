@@ -1,5 +1,3 @@
-
-#pragma once
 #include <iostream>
 #include "Admin.h"
 #include "Client.h"
@@ -11,7 +9,11 @@
 #include "UserInterface.h"
 
 
+
+
+
 int main() {
+	Product nowy;
 	Admin adminek;
 	adminek.setLogin("admin");
 	adminek.setPassword("admin123!");
@@ -21,10 +23,12 @@ int main() {
 
 	Admin* ptr_adminek{ &adminek };
 	Client* ptr_kliencik{ &kliencik };
-	//Stock magazyn;
 	DisplayConsole dupa;
 	dupa.printWelcomeScreen(ptr_adminek, ptr_kliencik);
-	//dupa.printList(magazyn.getStorage());
+
+
+
+
 
 	return 0;
 }

@@ -8,6 +8,7 @@
 class DisplayConsole :
     public UserInterface
 {
+private: 
 
 public:
     //void sortProductByName(Stock* storage, int sortDirection/*wskaznik const na stock od andrzeja + opcja czy od a do z czy z do a*/);
@@ -17,7 +18,7 @@ public:
     //void chooseTypeOfSorting();
     //void chooseTypeOfFiltering();
 
-    void printList(std::map <Product*, int> storage);
+    void printList(Stock*);
     void printWelcomeScreen(Admin*, Client*);
     void loginAndPassword(Admin* admin, Client* client);
     void adminPanel();
