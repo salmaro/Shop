@@ -7,9 +7,6 @@ Product::Product(float productPrice, std::string productName, std::string produc
 }
 Product::Product()
 	:Product{0,"x","x","x"}
-=======
-	:price(productPrice), name(productName), category(productCategory), supplier(productSupplier)
->>>>>>> 35b36c904bd8197dee37563a89751e2be58487d6
 {
 
 }

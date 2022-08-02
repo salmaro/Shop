@@ -35,7 +35,7 @@ Stock::Stock() {
 	 sluchawki_ptr = new Product(sluchawki);
 	 radio_ptr = new Product(radio);
 
-	storage.insert({ telwizory_ptr, 7 });
+	storage.insert({ telewizory_ptr, 7 });
 	storage.insert({ telefony_ptr, 5 });
 	storage.insert({ laptopy_ptr, 8 });
 	storage.insert({ sluchawki_ptr, 6 });
