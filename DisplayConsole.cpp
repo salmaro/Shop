@@ -14,6 +14,8 @@ void DisplayConsole::printList()
 	}
 }
 
+=======
+>>>>>>> 35b36c904bd8197dee37563a89751e2be58487d6
 void DisplayConsole::printWelcomeScreen(Admin* admin, Client* client) {
 
 	std::cout << "\t+--------------------------------------------+\n";
