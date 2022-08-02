@@ -5,7 +5,7 @@ void DisplayConsole::printList(Stock* store)
 {	
 
 	for (auto e: store->getStorage()) {
-		std::cout <<"Product: " << e.first->getName() << " Magazine: " << e.second << std::endl;
+		std::cout <<"Product: " << e.first->getPrice() << " Magazine: " << e.second << std::endl;
 	}
 
 }
