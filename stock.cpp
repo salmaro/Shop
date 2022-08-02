@@ -1,22 +1,20 @@
-﻿
-#include "stock.h"
-
+﻿#include "stock.h"
 
 
 Stock::Stock() {
 	
 
 	Product sekator(30, "Sekator", "OGROD", "Sharp");
-	Product kosiarka(1200, "Kosiarka", "OGROD", "Parkside");
-	Product myjka(700, "Myjka", "OGROD", "Karcher");
+	Product kosiarka(1200, "Kosiarka", "OGROD", "Bosch");
+	Product myjka(700, "Myjka", "OGROD", "Bosch");
 	Product lopata(40, "Lopata", "OGROD", "Bosch");
 	Product grabie(30, "Sekator", "OGROD", "Sharp");
 
-	sekator_ptr = new Product(sekator);
-	kosiarka_ptr = new Product(kosiarka);
-	myjka_ptr = new Product(myjka);
-	lopata_ptr = new Product(lopata);
-	grabie_ptr = new Product(grabie);
+	 sekator_ptr = new Product(sekator);
+	 kosiarka_ptr = new Product(kosiarka);
+	 myjka_ptr = new Product(myjka);
+	 lopata_ptr = new Product(lopata);
+	 grabie_ptr = new Product(grabie);
 
 	storage.insert({ sekator_ptr, 9 });
 	storage.insert({ kosiarka_ptr, 2 });
@@ -31,11 +29,11 @@ Stock::Stock() {
 	Product sluchawki(100.00, "Sluchawki", "RTV", "LG");
 	Product radio(200.00, "Radio", "RTV", "Bosch");
 
-	telewizory_ptr = new Product(telewizory);
-	telefony_ptr = new Product(telefony);
-	laptopy_ptr = new Product(laptopy);
-	sluchawki_ptr = new Product(sluchawki);
-	radio_ptr = new Product(radio);
+	 telewizory_ptr = new Product(telewizory);
+	 telefony_ptr = new Product(telefony);
+	 laptopy_ptr = new Product(laptopy);
+	 sluchawki_ptr = new Product(sluchawki);
+	 radio_ptr = new Product(radio);
 
 	storage.insert({ telewizory_ptr, 7 });
 	storage.insert({ telefony_ptr, 5 });
@@ -49,11 +47,11 @@ Stock::Stock() {
 	Product piekarniki(1200.00, "Piekarnik", "AGD", "Bosch");
 	Product pralki(2300.00, "Pralka", "AGD", "Sharp");
 
-	lodowki_ptr = new Product (lodowki);
-	mikrofalowki_ptr = new Product (mikrofalowki);
-	odkurzacze_ptr = new Product (odkurzacze);
-	piekarniki_ptr = new Product (piekarniki);
-	pralki_ptr = new Product (pralki);
+	 lodowki_ptr = new Product (lodowki);
+	 mikrofalowki_ptr = new Product (mikrofalowki);
+	 odkurzacze_ptr = new Product (odkurzacze);
+	 piekarniki_ptr = new Product (piekarniki);
+	 pralki_ptr = new Product (pralki);
 
 	storage.insert({ lodowki_ptr,5 });
 	storage.insert({ mikrofalowki_ptr,5 });
@@ -67,11 +65,11 @@ Stock::Stock() {
 	Product puzzle(30.00, "Puzzle", "TOYS", "Bosch");
 	Product maskotki(100.00, "Maskotka", "TOYS", "Sharp");
 
-	samochodziki_ptr = new Product(samochodziki);
-	klocki_ptr = new Product(klocki);
-	lalki_ptr = new Product(lalki);
-	puzzle_ptr = new Product(puzzle);
-	maskotki_ptr = new Product (maskotki );
+	 samochodziki_ptr = new Product(samochodziki);
+	 klocki_ptr = new Product(klocki);
+	 lalki_ptr = new Product(lalki);
+	 puzzle_ptr = new Product(puzzle);
+	 maskotki_ptr = new Product (maskotki );
 
 	storage.insert({ samochodziki_ptr, 7 });
 	storage.insert({ klocki_ptr, 5 });

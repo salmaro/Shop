@@ -3,12 +3,15 @@
 #include "UserInterface.h"
 #include "Admin.h"
 #include "Client.h"
+#include <iomanip>
 
 
 class DisplayConsole :
     public UserInterface
 {
 private: 
+
+    Stock magazyn;
 
 public:
     //void sortProductByName(Stock* storage, int sortDirection/*wskaznik const na stock od andrzeja + opcja czy od a do z czy z do a*/);
@@ -18,19 +21,21 @@ public:
     //void chooseTypeOfSorting();
     //void chooseTypeOfFiltering();
 
-    void printList(Stock*);
+    void printList();
     void printWelcomeScreen(Admin*, Client*);
     void loginAndPassword(Admin* admin, Client* client);
     void adminPanel();
     void userPanel();
-    void printTypeOfSorting(std::map <Product*, int> storage);
-    void printTypeOfFiltering(std::map <Product*, int> storage);
-    void sortPriceAscending(std::map <Product*, int> storage);
-    //void filterByCategory(std::map <Product*, int> storage);
-    //void filterBySupplier(std::map <Product*, int> storage);
-    //void sortInReverseAlphabeticalOrder(std::map <Product*, int> storage);
-   // void sortInAlphabeticalOrder(std::map <Product*, int> storage);
-   // void printCartContents();
-   // void sortPriceDescending(std::map <Product*, int> storage);
+    void printTypeOfSorting();
+    void printTypeOfFiltering();
+    void sortPriceAscending();
+    void filterByCategory();
+    void filterBySupplier();
+    int getCategory();
+    int getSupplier();
+    void sortInReverseAlphabeticalOrder();
+    void sortInAlphabeticalOrder();
+    void printCartContents();
+    void sortPriceDescending();
 
 };
