@@ -4,15 +4,17 @@
 #include "Admin.h"
 #include "Client.h"
 #include <iomanip>
+#include <string>
+#include "stock.h"
+#include "Shop.h"
 
 
 class DisplayConsole :
-    public UserInterface
+    public Shop, Client
 {
 private: 
 
-    Stock magazyn;
-
+ 
 public:
     //void sortProductByName(Stock* storage, int sortDirection/*wskaznik const na stock od andrzeja + opcja czy od a do z czy z do a*/);
     //void sortProductByPrice(Stock* storage, int sortDirection/*wskaznik const  na stock od andrzeja + opcja czy rosnaco/ malejaco */);
@@ -20,7 +22,7 @@ public:
     //void filtrByCategory(Stock* storage);
     //void chooseTypeOfSorting();
     //void chooseTypeOfFiltering();
-
+   
     void printList();
     void printWelcomeScreen(Admin*, Client*);
     void loginAndPassword(Admin* admin, Client* client);

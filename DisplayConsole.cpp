@@ -2,15 +2,17 @@
 
 void DisplayConsole::printList()
 {	
-	std::map<Product*, int> magazyn1 = magazyn.getStorage();
+	//std::map<Product*, int>* magazyn1 = magazyn.getStorage();
 	/*for (auto e: magazyn.getStorage()) {
 		std::cout << std::setw(25) << "Product: " << e.first->getName()
 			<< std::right << "\tMagazine: " << e.second << std::endl;
 	}*/
-	for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
-		std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
+	size_t i{ 1 };
+	for (std::map<Product*, int>::iterator it = magazyn.getStorage()->begin(); it != magazyn.getStorage()->end(); it++) {
+		std::cout<<std::setw(3)<<std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
 			<< std::left << std::setw(10) << "Magazine: " << it->second
 			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
+		i++;
 	}
 }
 
@@ -80,7 +82,7 @@ void DisplayConsole::adminPanel() {
 void DisplayConsole::userPanel() {
 	std::cout << "\t\t1. Display all product in the shop\n";
 	std::cout << "\t\t2. Display cart\n";
-	std::cout << "\t\t3. Choose category\n\n>> ";
+	std::cout << "\t\t3. Choose product\n\n>> "; // choode category
 
 	int choice;
 	std::cin >> choice;
@@ -90,11 +92,30 @@ void DisplayConsole::userPanel() {
 	if (choice == 1) {
 		printList();
 		std::cout << std::endl;
-		std::cout << "1. Sort products\n";
-		std::cout << "2. Filter products\n\n>> ";
+		std::cout << "Select products\n";
+		//std::cout << "1. Sort products\n";
+		//std::cout << "2. Filter products\n\n>> ";
 
-		std::cin >> choice;
-		std::cin.clear();
+		//std::cin >> choice;
+		//std::cin.clear();
+
+
+		int produktID;
+		Product* newItem;
+		std::cout << "Wybierze pozcyje produktu: " << std::endl;
+		std::cin >> produktID;
+		//wyswietlenie wektora
+		//for (auto e : *(magazyn.getProductID())) {
+		//	std::cout << "Pointer:" << e << std::endl;
+		//}
+
+
+		newItem = magazyn.getProductID()->at(produktID - 1);
+		//std::cout << "newItem pointer: " << newItem;
+		koszyk.addProduct(newItem);
+		std::cout << "Add to cart product: " << newItem->getName() << std::endl;
+		//koszyk.displayCart();
+		system("Pause");
 
 		if (choice == 1) {
 			system("cls");
@@ -106,10 +127,10 @@ void DisplayConsole::userPanel() {
 		}
 	}
 	else if (choice == 2) {
-		//printCartContents();
+		koszyk.displayCart();
 	}
 	else if (choice == 3) {
-		
+
 	}
 }
 
@@ -164,15 +185,15 @@ void DisplayConsole::printTypeOfFiltering()
 
 void DisplayConsole::sortPriceAscending()
 {
-	std::map<Product*, int> magazyn1 = magazyn.getStorage();
+	std::map<Product*, int> *magazyn1 = magazyn.getStorage();
 	std::multimap<float, Product*, std::less<float>> magazynek;
 
-	for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 		magazynek.insert({ it->first->getPrice(),it->first });
 	}
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "Product: " << std::setw(15) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << magazyn1[it->second]
+			<< std::left << std::setw(10) << "Magazine: " <<(* magazyn1)[it->second]
 			<< "\tPrice: " << std::setw(15) << std::left << it->second->getPrice() << std::endl << std::endl;
 	}
 }
@@ -180,10 +201,10 @@ void DisplayConsole::sortPriceAscending()
 void DisplayConsole::filterByCategory()
 {
 	int category = getCategory();
-	std::map<Product*, int> magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
 
 	if (category == 1 ) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if(it->first->getCategory() == "AGD")
 			std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -192,7 +213,7 @@ void DisplayConsole::filterByCategory()
 		std::cout << std::endl;
 	}
 	else if (category == 2) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if (it->first->getCategory() == "RTV")
 				std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -201,7 +222,7 @@ void DisplayConsole::filterByCategory()
 		std::cout << std::endl;
 	}
 	else if (category == 3) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if (it->first->getCategory() == "TOYS")
 				std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -210,7 +231,7 @@ void DisplayConsole::filterByCategory()
 		std::cout << std::endl;
 	}
 	else if (category == 4) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if (it->first->getCategory() == "OGROD")
 				std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -223,10 +244,10 @@ void DisplayConsole::filterByCategory()
 void DisplayConsole::filterBySupplier()
 {
 	int supplier = getSupplier();
-	std::map<Product*, int> magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
 
 	if (supplier == 1) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if (it->first->getSupplier() == "Sharp")
 				std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -235,7 +256,7 @@ void DisplayConsole::filterBySupplier()
 		std::cout << std::endl;
 	}
 	else if (supplier == 2) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if (it->first->getSupplier() == "Bosch")
 				std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -244,7 +265,7 @@ void DisplayConsole::filterBySupplier()
 		std::cout << std::endl;
 	}
 	else if (supplier == 3) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if (it->first->getSupplier() == "LG")
 				std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -253,7 +274,7 @@ void DisplayConsole::filterBySupplier()
 		std::cout << std::endl;
 	}
 	else if (supplier == 4) {
-		for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 			if (it->first->getSupplier() == "Samsung")
 				std::cout << "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << std::setw(10) << "Magazine: " << it->second
@@ -293,48 +314,48 @@ int DisplayConsole::getSupplier()
 
 void DisplayConsole::sortInReverseAlphabeticalOrder()
 {
-	std::map<Product*, int> magazyn1 = magazyn.getStorage();
+	std::map<Product*, int> *magazyn1 = magazyn.getStorage();
 	std::multimap<std::string, Product*, std::greater<std::string>> magazynek;
 
-	for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 		magazynek.insert({ it->first->getName(),it->first });
 	}
 
 	for (std::multimap<std::string, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "Product: " << std::setw(15) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << magazyn1[it->second]
+			<< std::left << std::setw(10) << "Magazine: " <<(* magazyn1)[it->second]
 			<< "\tPrice: " << std::setw(15) << std::left << it->second->getPrice() << std::endl << std::endl;
 	}
 }
 
 void DisplayConsole::sortInAlphabeticalOrder()
 {
-	std::map<Product*, int> magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
 	std::multimap<std::string, Product*, std::less<std::string>> magazynek;
 
-	for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 		magazynek.insert({ it->first->getName(),it->first });
 	}
 
 	for (std::multimap<std::string, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "Product: " << std::setw(15) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << magazyn1[it->second]
+			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second]
 			<< "\tPrice: " << std::setw(15) << std::left << it->second->getPrice() << std::endl << std::endl;
 	}
 }
 
 void DisplayConsole::sortPriceDescending()
 {
-	std::map<Product*, int> magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
 	std::multimap<float, Product*, std::greater<float>> magazynek;
 
-	for (std::map<Product*, int>::iterator it = magazyn1.begin(); it != magazyn1.end(); it++) {
+	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
 		magazynek.insert({ it->first->getPrice(),it->first });
 	}
 
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "Product: " << std::setw(15) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << magazyn1[it->second]
+			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second]
 			<< "\tPrice: " << std::setw(15) << std::left << it->second->getPrice() << std::endl << std::endl;
 	}
 }

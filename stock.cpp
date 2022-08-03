@@ -8,9 +8,10 @@ Stock::Stock() {
 	Product kosiarka(1200, "Kosiarka", "OGROD", "Bosch");
 	Product myjka(700, "Myjka", "OGROD", "Bosch");
 	Product lopata(40, "Lopata", "OGROD", "Bosch");
-	Product grabie(30, "Sekator", "OGROD", "Sharp");
+	Product grabie(30, "Grabie", "OGROD", "Sharp");
 
-	 sekator_ptr = new Product(sekator);
+	sekator_ptr = new Product(sekator);
+	 //products_ptr[0]={ new Product(sekator)};
 	 kosiarka_ptr = new Product(kosiarka);
 	 myjka_ptr = new Product(myjka);
 	 lopata_ptr = new Product(lopata);
@@ -76,6 +77,10 @@ Stock::Stock() {
 	storage.insert({ lalki_ptr, 8 });
 	storage.insert({ puzzle_ptr, 6 });
 	storage.insert({ maskotki_ptr, 4 });
+
+	for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
+		productId.push_back(it->first);
+	}
 }
 
 Stock::~Stock()
@@ -107,7 +112,34 @@ Stock::~Stock()
 
 }
 
-std::map <Product*, int > Stock::getStorage()
+std::map <Product*, int >* Stock::getStorage()
 {
-	return storage;
+	return &storage;
 }
+
+std::vector<Product*>* Stock::getProductID()
+{
+	return &productId;
+}
+
+void Stock::subtractQuantity(Product* insertProduct)
+{
+	
+	//std::cout << "jestem w substrukt, wartosc:" << insertProduct << "nazwa: " << insertProduct->getName()<<std::endl;
+	//size_t i{ 1 };
+	//for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
+	//	std::cout << std::setw(3) << std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
+	//		<< std::left << std::setw(10) << "Magazine: " << it->second
+	//		<< "\tPointer: " << std::setw(15) << std::left << it->first << std::endl;
+	//	i++;
+	//}
+
+	//for (auto e : productId ) {
+	//	std::cout << "wskaznik: "<<e << std::endl;
+	//}
+}
+
+
+
+
+
