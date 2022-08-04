@@ -349,8 +349,8 @@ void DisplayConsole::sortPriceDescending()
 	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
 	std::multimap<float, Product*, std::greater<float>> magazynek;
 
-	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
-		magazynek.insert({ it->first->getPrice(),it->first });
+	for (/*std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++*/auto it: *magazyn1) {
+		magazynek.insert({ it.first->getPrice(),it.first });
 	}
 
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {

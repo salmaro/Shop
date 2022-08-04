@@ -10,7 +10,7 @@
 
 
 class DisplayConsole :
-    public Shop, Client
+    public Client, Shop
 {
 private: 
 

@@ -26,6 +26,19 @@ void Cart::removeProduct()
 
 }
 
+void Cart::changeQuantity(Product* chosenProduct)
+{
+	if (currentCart.find(chosenProduct) == currentCart.end()) {
+		currentCart.insert({ chosenProduct, 1 });
+		//std::cout << "chosenProduct pointer: " << chosenProduct << std::endl;
+		magazyn.subtractQuantity(chosenProduct);
+	}
+	else {
+		currentCart.find(chosenProduct)->second--;
+		magazyn.subtractQuantity(chosenProduct);
+	}
+}
+
 void Cart::displayCart()
 {
 	size_t i{ 1 };
@@ -108,7 +121,21 @@ void Cart::editCartOptions()
 	}
 		break;
 	case 2:
-		editCartOptions();
+		std::cout << "Chose product to remove one object : \n ";
+		this->printCart();
+		int productToRemoveObject;
+		std::cout << ">> ";
+		std::cin >> productToRemoveObject;
+
+		for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
+			if ((productToRemoveObject - 1) == i) {
+				currentCart.erase(it);
+				break;
+			}
+			i++;
+		}
+		std::cout << "\n\n \t\t Your current cart: \n";
+		this->printCart();
 		break;
 	case 3:
 		break;

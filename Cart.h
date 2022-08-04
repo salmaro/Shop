@@ -16,7 +16,7 @@ public:
     float getTotalPrice();
     void addProduct(Product* chosenProduct);
     void removeProduct();
-    void changeQuantity();
+    void changeQuantity(Product* chosenProduct);
     void displayCart();
     std::map<Product*, int> getCurrentCart();
     void cartOptions();

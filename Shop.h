@@ -4,7 +4,7 @@
 class Shop
 {
 protected:
-	Stock magazyn;
+	static Stock magazyn;
 public:
 
 };
