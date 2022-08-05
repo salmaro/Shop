@@ -4,112 +4,88 @@
 Stock::Stock() {
 
 
+	products_ptr = new Product[20];
+
 	Product sekator(30, "Sekator", "OGROD", "Sharp");
 	Product kosiarka(1200, "Kosiarka", "OGROD", "Bosch");
 	Product myjka(700, "Myjka", "OGROD", "Bosch");
 	Product lopata(40, "Lopata", "OGROD", "Bosch");
 	Product grabie(30, "Grabie", "OGROD", "Sharp");
 
-	sekator_ptr = new Product(sekator);
-	 //products_ptr[0]={ new Product(sekator)};
-	 kosiarka_ptr = new Product(kosiarka);
-	 myjka_ptr = new Product(myjka);
-	 lopata_ptr = new Product(lopata);
-	 grabie_ptr = new Product(grabie);
-
-	storage.insert({ sekator_ptr, 9 });
-	storage.insert({ kosiarka_ptr, 2 });
-	storage.insert({ myjka_ptr, 24 });
-	storage.insert({ lopata_ptr, 5 });
-	storage.insert({ grabie_ptr, 6 });
-
-
-	Product telewizory(2000.00, "Telewizor","RTV", "Samsung");
-	Product telefony(300.00, "Telefon", "RTV", "LG");
-	Product laptopy(3000.00, "Laptop", "RTV", "Samsung");
+	Product telewizor(2000.00, "Telewizor","RTV", "Samsung");
+	Product telefon(300.00, "Telefon", "RTV", "LG");
+	Product laptop(3000.00, "Laptop", "RTV", "Samsung");
 	Product sluchawki(100.00, "Sluchawki", "RTV", "LG");
 	Product radio(200.00, "Radio", "RTV", "Bosch");
 
-	 telewizory_ptr = new Product(telewizory);
-	 telefony_ptr = new Product(telefony);
-	 laptopy_ptr = new Product(laptopy);
-	 sluchawki_ptr = new Product(sluchawki);
-	 radio_ptr = new Product(radio);
+	Product lodowka(1500.00, "Lodowka", "AGD", "LG");
+	Product mikrofalowka(600.00, "Mikrofalowka", "AGD", "Bosch");
+	Product odkurzacz(700.00, "Odkurzacz", "AGD", "Sharp");
+	Product piekarnik(1200.00, "Piekarnik", "AGD", "Bosch");
+	Product pralka(2300.00, "Pralka", "AGD", "Sharp");
 
-	storage.insert({ telewizory_ptr, 7 });
-	storage.insert({ telefony_ptr, 5 });
-	storage.insert({ laptopy_ptr, 8 });
-	storage.insert({ sluchawki_ptr, 6 });
-	storage.insert({ radio_ptr, 4 });
-
-	Product lodowki(1500.00, "Lodowka", "AGD", "LG");
-	Product mikrofalowki(600.00, "Mikrofalowka", "AGD", "Bosch");
-	Product odkurzacze(700.00, "Odkurzacz", "AGD", "Sharp");
-	Product piekarniki(1200.00, "Piekarnik", "AGD", "Bosch");
-	Product pralki(2300.00, "Pralka", "AGD", "Sharp");
-
-	 lodowki_ptr = new Product (lodowki);
-	 mikrofalowki_ptr = new Product (mikrofalowki);
-	 odkurzacze_ptr = new Product (odkurzacze);
-	 piekarniki_ptr = new Product (piekarniki);
-	 pralki_ptr = new Product (pralki);
-
-	storage.insert({ lodowki_ptr,5 });
-	storage.insert({ mikrofalowki_ptr,5 });
-	storage.insert({ odkurzacze_ptr,5 });
-	storage.insert({ piekarniki_ptr,5 });
-	storage.insert({ pralki_ptr,5 });
-
-	Product samochodziki(20.00, "Samochod", "TOYS", "Sharp");
+	Product samochodzik(20.00, "Samochod", "TOYS", "Sharp");
 	Product klocki(200.00, "Klocki", "TOYS", "LG");
-	Product lalki(40.00, "Lalka", "TOYS", "Samsung");
+	Product lalka(40.00, "Lalka", "TOYS", "Samsung");
 	Product puzzle(30.00, "Puzzle", "TOYS", "Bosch");
-	Product maskotki(100.00, "Maskotka", "TOYS", "Sharp");
+	Product maskotka(100.00, "Maskotka", "TOYS", "Sharp");
 
-	 samochodziki_ptr = new Product(samochodziki);
-	 klocki_ptr = new Product(klocki);
-	 lalki_ptr = new Product(lalki);
-	 puzzle_ptr = new Product(puzzle);
-	 maskotki_ptr = new Product (maskotki );
+	products_ptr[0] = sekator;
+	products_ptr[1] = kosiarka;
+	products_ptr[2] = myjka;
+	products_ptr[3] = lopata;
+	products_ptr[4] = grabie;
 
-	storage.insert({ samochodziki_ptr, 7 });
-	storage.insert({ klocki_ptr, 5 });
-	storage.insert({ lalki_ptr, 8 });
-	storage.insert({ puzzle_ptr, 6 });
-	storage.insert({ maskotki_ptr, 4 });
+	products_ptr[5] = telewizor;
+	products_ptr[6] = telefon;
+	products_ptr[7] = laptop;
+	products_ptr[8] = sluchawki;
+	products_ptr[9] = radio;
 
-	for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
-		productId.push_back(it->first);
-	}
+	products_ptr[10] = lodowka;
+	products_ptr[11] = mikrofalowka;
+	products_ptr[12] = odkurzacz;
+	products_ptr[13] = piekarnik;
+	products_ptr[14] = pralka;
+
+	products_ptr[15] = samochodzik;
+	products_ptr[16] = klocki;
+	products_ptr[17] = lalka;
+	products_ptr[18] = puzzle;
+	products_ptr[19] = maskotka;
+
+	storage.insert({ products_ptr, 9 });
+	storage.insert({ products_ptr + 1, 2 });
+	storage.insert({ products_ptr + 2, 24 });
+	storage.insert({ products_ptr + 3, 5 });
+	storage.insert({ products_ptr + 4, 6 });
+
+	storage.insert({ products_ptr + 5, 7 });
+	storage.insert({ products_ptr + 6, 5 });
+	storage.insert({ products_ptr + 7, 8 });
+	storage.insert({ products_ptr + 8, 6 });
+	storage.insert({ products_ptr + 9, 4 });
+
+	storage.insert({ products_ptr + 10,5 });
+	storage.insert({ products_ptr + 11,5 });
+	storage.insert({ products_ptr + 12,5 });
+	storage.insert({ products_ptr + 13,5 });
+	storage.insert({ products_ptr + 14,5 });
+
+	storage.insert({ products_ptr + 15, 7 });
+	storage.insert({ products_ptr + 16, 5 });
+	storage.insert({ products_ptr + 17, 8 });
+	storage.insert({ products_ptr + 18, 6 });
+	storage.insert({ products_ptr + 19, 4 });
+
+	//for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
+	//	productId.push_back(it->first);
+	//}
 }
 
 Stock::~Stock()
 {
-
-	delete sekator_ptr;
-	delete kosiarka_ptr;
-	delete myjka_ptr;
-	delete lopata_ptr;
-	delete grabie_ptr;
-
-	delete telewizory_ptr;
-	delete telefony_ptr;
-	delete laptopy_ptr;
-	delete sluchawki_ptr;
-	delete radio_ptr;
-
-	delete lodowki_ptr;
-	delete mikrofalowki_ptr;
-	delete odkurzacze_ptr;
-	delete piekarniki_ptr;
-	delete pralki_ptr;
-
-	delete samochodziki_ptr;
-	delete klocki_ptr;
-	delete lalki_ptr;
-	delete puzzle_ptr;
-	delete maskotki_ptr;
-
+	delete[] products_ptr;
 }
 
 std::map <Product*, int >* Stock::getStorage()
@@ -117,15 +93,15 @@ std::map <Product*, int >* Stock::getStorage()
 	return &storage;
 }
 
-std::vector<Product*>* Stock::getProductID()
+Product* Stock::getProducts()
 {
-	return &productId;
+	return products_ptr;
 }
 
-void Stock::subtractQuantity(Product* insertProduct)
+void Stock::subtractQuantity(int productID)
 {
-	
-	//std::cout << "jestem w substrukt, wartosc:" << insertProduct << "nazwa: " << insertProduct->getName()<<std::endl;
+	storage[products_ptr + (productID-1)]--;
+	std::cout << "jestem w substrukt, wartosc:" << storage[products_ptr + (productID - 1)] << "nazwa: " <<(products_ptr + (productID - 1))->getName()<<std::endl;
 	//size_t i{ 1 };
 	//for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
 	//	std::cout << std::setw(3) << std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
@@ -137,6 +113,33 @@ void Stock::subtractQuantity(Product* insertProduct)
 	//for (auto e : productId ) {
 	//	std::cout << "wskaznik: "<<e << std::endl;
 	//}
+
+	size_t i{ 1 };
+	for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
+		std::cout << std::setw(3) << std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
+			<< std::left << std::setw(10) << "Magazine: " << it->second
+			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
+		i++;
+	}
+}
+
+void Stock::displayMagazine()
+{
+	//size_t i{ 1 };
+	//for (auto it = storage.begin(); it != storage.end(); it++) {
+	//	std::cout	<< std::setw(3)<<std::left << i<< ". Product: " << std::setw(15) << std::left << it->first->getName()
+	//				<< std::left << std::setw(10) << " magazine: " << it->second
+	//				<< "\tprice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
+	//	i++;
+	//}
+
+	size_t i{ 1 };
+	for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
+		std::cout << std::setw(3) << std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
+			<< std::left << std::setw(10) << "Magazine: " << it->second
+			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
+		i++;
+	}
 }
 
 

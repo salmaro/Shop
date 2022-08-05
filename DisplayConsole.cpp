@@ -7,13 +7,19 @@ void DisplayConsole::printList()
 		std::cout << std::setw(25) << "Product: " << e.first->getName()
 			<< std::right << "\tMagazine: " << e.second << std::endl;
 	}*/
-	size_t i{ 1 };
-	for (std::map<Product*, int>::iterator it = magazyn.getStorage()->begin(); it != magazyn.getStorage()->end(); it++) {
-		std::cout<<std::setw(3)<<std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
-			<< std::left << std::setw(10) << "Magazine: " << it->second
-			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
-		i++;
-	}
+	//size_t i{ 1 };
+	//for (std::map<Product*, int>::iterator it = magazyn.storage.begin(); it != magazyn.storage.end(); it++) {
+	//	std::cout<<std::setw(3)<<std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
+	//		<< std::left << std::setw(10) << "Magazine: " << it->second
+	//		<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
+	//	i++;
+	//}
+
+	//for (const auto& pair : magazyn.storage) {
+	//	std::cout	<< " Product: " << pair.first->getName()
+	//				<< " Magazine: " << pair.second
+	//				<< " Price: " << pair.first->getPrice() << std::endl;
+	//}
 }
 
 void DisplayConsole::printWelcomeScreen(Admin* admin, Client* client) {
@@ -90,7 +96,7 @@ void DisplayConsole::userPanel() {
 	std::cin.clear();
 
 	if (choice == 1) {
-		printList();
+		magazyn.displayMagazine();
 		std::cout << std::endl;
 		std::cout << "Select products\n";
 		//std::cout << "1. Sort products\n";
@@ -100,30 +106,21 @@ void DisplayConsole::userPanel() {
 		//std::cin.clear();
 
 
+
 		int produktID;
-		Product* newItem;
 		std::cout << "Wybierze pozcyje produktu: " << std::endl;
 		std::cin >> produktID;
-		//wyswietlenie wektora
-		//for (auto e : *(magazyn.getProductID())) {
-		//	std::cout << "Pointer:" << e << std::endl;
-		//}
-
-
-		newItem = magazyn.getProductID()->at(produktID - 1);
-		//std::cout << "newItem pointer: " << newItem;
-		koszyk.addProduct(newItem);
-		std::cout << "Add to cart product: " << newItem->getName() << std::endl;
-		//koszyk.displayCart();
+		koszyk.addProduct(produktID);
+		koszyk.displayCart();
 		system("Pause");
 
 		if (choice == 1) {
 			system("cls");
-			printTypeOfSorting();
+			//printTypeOfSorting();
 		}
 		else if (choice == 2) {
 			system("cls");
-			printTypeOfFiltering();
+			//printTypeOfFiltering();
 		}
 	}
 	else if (choice == 2) {

@@ -1,11 +1,11 @@
 #pragma once
 #include "stock.h"
 #include <iomanip>
-#include "Shop.h"
+#include "DisplayConsole.h"
 //#include "Client.h"
 
 class Cart :
-    public Shop
+    public DisplayConsole
 {
 private:
     std::map<Product*, int> currentCart;
@@ -14,7 +14,7 @@ private:
 public:
 
     float getTotalPrice();
-    void addProduct(Product* chosenProduct);
+    void addProduct(int productID);
     void removeProduct();
     void changeQuantity();
     void displayCart();

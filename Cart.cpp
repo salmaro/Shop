@@ -8,16 +8,18 @@ float Cart::getTotalPrice()
 	return totalPrice;
 }
 
-void Cart::addProduct(Product* chosenProduct)
+void Cart::addProduct(int productID)
 {
-	if (currentCart.find(chosenProduct) == currentCart.end()) {
-		currentCart.insert({ chosenProduct, 1 });
+	if (currentCart.find(magazyn.products_ptr+(productID-1)) == currentCart.end()) {
+		currentCart.insert({ magazyn.products_ptr + (productID - 1), 1 });
 		//std::cout << "chosenProduct pointer: " << chosenProduct << std::endl;
-		magazyn.subtractQuantity(chosenProduct);
+		magazyn.subtractQuantity(productID);
+		std::cout << "Add to cart product: " << (magazyn.products_ptr + (productID - 1))->getName() << std::endl;
 	}
 	else {
-		currentCart.find(chosenProduct)->second++;
-		magazyn.subtractQuantity(chosenProduct);
+		currentCart.find(magazyn.products_ptr + (productID - 1))->second++;
+		magazyn.subtractQuantity(productID);
+		std::cout << "Add to cart product: " << (magazyn.products_ptr + (productID - 1))->getName() << std::endl;
 	}
 }
 
