@@ -1,5 +1,5 @@
 #pragma once
-#include "Stock.h"
+#include "stock.h"
 
 class Shop
 {

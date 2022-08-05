@@ -127,26 +127,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Admin.cpp" />
-    <ClCompile Include="Cart.cpp" />
-    <ClCompile Include="Client.cpp" />
-    <ClCompile Include="DisplayConsole.cpp" />
+    <ClCompile Include="admin.cpp" />
+    <ClCompile Include="cart.cpp" />
+    <ClCompile Include="client.cpp" />
+    <ClCompile Include="displayConsole.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Product.cpp" />
-    <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="product.cpp" />
+    <ClCompile Include="shop.cpp" />
     <ClCompile Include="stock.cpp" />
-    <ClCompile Include="User.cpp" />
+    <ClCompile Include="user.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Admin.h" />
-    <ClInclude Include="Cart.h" />
-    <ClInclude Include="Client.h" />
-    <ClInclude Include="DisplayConsole.h" />
-    <ClInclude Include="Product.h" />
-    <ClInclude Include="Shop.h" />
+    <ClInclude Include="admin.h" />
+    <ClInclude Include="cart.h" />
+    <ClInclude Include="client.h" />
+    <ClInclude Include="displayConsole.h" />
+    <ClInclude Include="product.h" />
+    <ClInclude Include="shop.h" />
     <ClInclude Include="stock.h" />
-    <ClInclude Include="User.h" />
-    <ClInclude Include="UserInterface.h" />
+    <ClInclude Include="user.h" />
+    <ClInclude Include="userInterface.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

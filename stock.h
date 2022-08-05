@@ -1,19 +1,16 @@
 #pragma once
 #include <map>
-#include "Product.h"
+#include "product.h"
 #include <vector>
 #include <iomanip>
 
 class Stock {
 private:
-	//Product* products_ptr[20];
+
 	Product* products_ptr;
-
-	//std::vector<Product*> productId;
-
 	std::map <Product*, int > storage;
 protected:
-	//static Stock magazyn;
+
 
 public:
 	Stock();

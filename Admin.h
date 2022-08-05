@@ -1,6 +1,6 @@
 #pragma once
-#include "Client.h"
-#include "User.h"
+#include "client.h"
+#include "user.h"
 #include "stock.h"
 #include <map>
 #include <iostream>

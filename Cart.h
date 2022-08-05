@@ -1,7 +1,7 @@
 #pragma once
 #include "stock.h"
 #include <iomanip>
-#include "Shop.h"
+#include "shop.h"
 //#include "Client.h"
 
 class Cart :

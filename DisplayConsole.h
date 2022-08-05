@@ -1,12 +1,12 @@
 #pragma once
 #include <iostream>
-#include "UserInterface.h"
-#include "Admin.h"
-#include "Client.h"
+#include "userInterface.h"
+#include "admin.h"
+#include "client.h"
 #include <iomanip>
 #include <string>
 #include "stock.h"
-#include "Shop.h"
+#include "shop.h"
 
 
 class DisplayConsole :

@@ -1,6 +1,6 @@
 #pragma once
-#include "User.h"
-#include "Cart.h"
+#include "user.h"
+#include "cart.h"
 #include<string>
 
 class Client :

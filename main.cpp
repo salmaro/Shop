@@ -1,12 +1,12 @@
 #include <iostream>
-#include "Admin.h"
-#include "Client.h"
-#include "DisplayConsole.h"
+#include "admin.h"
+#include "client.h"
+#include "displayConsole.h"
 #include <map>
-#include "Product.h"
+#include "product.h"
 #include "stock.h"
-#include "User.h"
-#include "UserInterface.h"
+#include "user.h"
+#include "userInterface.h"
 
 
 
