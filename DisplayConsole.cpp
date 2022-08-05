@@ -101,19 +101,12 @@ void DisplayConsole::userPanel() {
 
 
 		int produktID;
-		Product* newItem;
 		std::cout << "Wybierze pozcyje produktu: " << std::endl;
 		std::cin >> produktID;
-		//wyswietlenie wektora
-		//for (auto e : *(magazyn.getProductID())) {
-		//	std::cout << "Pointer:" << e << std::endl;
-		//}
 
-
-		newItem = magazyn.getProductID()->at(produktID - 1);
 		//std::cout << "newItem pointer: " << newItem;
-		koszyk.addProduct(newItem);
-		std::cout << "Add to cart product: " << newItem->getName() << std::endl;
+		koszyk.addProduct(produktID);
+		std::cout << "Add to cart product: " << magazyn.getProductID()->getName() << std::endl;
 		//koszyk.displayCart();
 		system("Pause");
 

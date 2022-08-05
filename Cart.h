@@ -14,7 +14,7 @@ private:
 public:
 
     float getTotalPrice();
-    void addProduct(Product* chosenProduct);
+    void addProduct(int productID);
     void removeProduct();
     void changeQuantity(Product* chosenProduct);
     void displayCart();
