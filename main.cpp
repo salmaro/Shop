@@ -13,11 +13,12 @@
 
 
 int main() {
-	Product nowy;
+	//Product nowy;
 	Admin adminek;
 	adminek.setLogin("admin");
 	adminek.setPassword("admin123!");
 	Client kliencik;
+
 	kliencik.setLogin("1");
 	kliencik.setPassword("1");
 

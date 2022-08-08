@@ -161,23 +161,9 @@ void Cart::printCart()
 
 void Cart::checkoutCart()
 {
-	//wyswietlanie koszyka
-	this->printCart();
-	//opcaj wpisania danych adresowych
-	std::cout << "Please enter your name:" << std::endl;
-	//std::cin >> Cimie;
-	std::cout << "Please enter your surname:" << std::endl;
-	//std::cin >> this->nazwisko;
-	std::cout << "Please enter your email:" << std::endl;
-	//std::cin >> this->email;
-	std::cout << "Please enter your phone number:" << std::endl;
-	//std::cin >> this->phoneNumber;
-	//go to payment
-
-	//Client::BillingAddress{"Bunczy Konina", " Krakow", " 30 - 383", "Ruczaj"};
-	//Client::ShippingAddress{ "Kura", " Kogut", " Kot", "Pies" };
-	this -> payment();
-
+	printCart();
+	//setPersonalData();
+	payment();
 }
 
 void Cart::payment()

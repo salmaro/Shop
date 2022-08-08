@@ -7,8 +7,8 @@ class Client :
     public User
 { 
 private:
-    std::string imie;
-    std::string nazwisko;
+    std::string name;
+    std::string surname;
     std::string email;
     std::string phoneNumber;
 
@@ -30,6 +30,7 @@ private:
     };
     Cart koszyk;
 
+    void setPersonalData();
     void setBillingAddress();
     void setShippingAddress();
 };
