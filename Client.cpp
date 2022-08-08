@@ -2,7 +2,7 @@
 
 void Client::setBillingAddress()
 {
-	ShippingAddress{"Poland","Warsaw","28608","Powstancow 10/2"};
+	//ShippingAddress{"Poland","Warsaw","28608","Powstancow 10/2"};
 
 	std::cout << "Please enter your coutry:" << std::endl;
 	std::cin >> BillingAddress::country;
@@ -17,8 +17,6 @@ void Client::setBillingAddress()
 
 void Client::setShippingAddress()
 {
-	ShippingAddress{ "Poland","Warsaw","28608","Powstancow 10/2" };
-
 	std::cout << "Please enter your name:" << std::endl;
 	std::cin >> this->imie;
 	std::cout << "Please enter your surname:" << std::endl;
@@ -27,5 +25,4 @@ void Client::setShippingAddress()
 	std::cin >> this->email;
 	std::cout << "Please enter your phone number:" << std::endl;
 	std::cin >> this->phoneNumber;
-
 }
