@@ -1,7 +1,9 @@
 #pragma once
 #include <iomanip>
 #include <map>
-#include "Shop.h"
+#include "Stock.h"
+
+
 
 
 class Cart
@@ -19,7 +21,7 @@ public:
     void cartOptions();
     void editCartOptions();
     void printCart();
-    void checkoutCart(Client* client);
-    void payment();
+    int checkoutCart();
 };
+
 

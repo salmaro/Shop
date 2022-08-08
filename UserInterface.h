@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include<vector>
 #include<string>
-#include "Stock.h"
+
 
 class UserInterface
 {

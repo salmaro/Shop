@@ -2,8 +2,9 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include "Shop.h"
-
+#include "Stock.h"
+#include "Client.h"
+#include "Admin.h"
 
 class DisplayConsole{
 public:

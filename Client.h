@@ -12,26 +12,28 @@ private:
     std::string email;
     std::string phoneNumber;
 
-   static struct BillingAddress 
+    struct BillingAddress 
     {
-        static std::string country;
-        static std::string city;
-        static std::string zipCode;
-        static std::string address;
-
+         std::string country;
+         std::string city;
+         std::string zipCode;
+         std::string address;
     };
-    static struct ShippingAddress
+    BillingAddress billingAdress;
+
+     struct ShippingAddress
     {
-        static std::string country;
-        static std::string city;
-        static std::string zipCode;
-        static std::string address;
-
+         std::string country;
+         std::string city;
+         std::string zipCode;
+         std::string address;
     };
-    
+     ShippingAddress shippingAdress;
 public:
     Cart koszyk;
     void setPersonalData();
     void setBillingAddress();
     void setShippingAddress();
 };
+
+

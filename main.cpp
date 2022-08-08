@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Shop.h"
 
@@ -7,7 +8,8 @@
 
 
 int main() {
-	//Product nowy;
+	Shop shop;
+	shop.session();
 	
 
 

@@ -19,3 +19,5 @@ public:
 	Product* getProductID();
 	void subtractQuantity(Product* insertProduct);
 };
+
+

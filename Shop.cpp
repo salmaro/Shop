@@ -18,7 +18,7 @@ void Shop::session() {
 	Client* ptr_kliencik{ &kliencik };
 	DisplayConsole konsola;
 
-	int authorisation;
+	int authorisation = 1;
 	int finish = 0;
 
 	while (authorisation != 0) {
@@ -33,6 +33,12 @@ void Shop::session() {
 		}
 	}
 	
-	kliencik.koszyk.checkoutCart(ptr_kliencik);
+	if (kliencik.koszyk.checkoutCart() == 1) {
+		kliencik.setPersonalData();
+	}
+
+}
+
+void Shop::payment() {
 
 }

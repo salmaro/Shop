@@ -17,24 +17,24 @@ void Client::setBillingAddress()
 	//ShippingAddress{"Poland","Warsaw","28608","Powstancow 10/2"};
 
 	std::cout << "Please enter your coutry:" << std::endl;
-	std::cin >> BillingAddress::country;
-	std::cout << "Please enter your surname:" << std::endl;
-	std::cin >> BillingAddress::city;
-	std::cout << "Please enter your email:" << std::endl;
-	std::cin >> BillingAddress::zipCode;
-	std::cout << "Please enter your phone number:" << std::endl;
-	std::cin >> BillingAddress::address;
+	std::cin >> billingAdress.country;
+	std::cout << "Please enter the city:" << std::endl;
+	std::cin >> billingAdress.city;
+	std::cout << "Please enter ythe zip Code:" << std::endl;
+	std::cin >> billingAdress.zipCode;
+	std::cout << "Please enter your address:" << std::endl;
+	std::cin >> billingAdress.address;
 	
 }
 
 void Client::setShippingAddress()
 {
 	std::cout << "Please enter your coutry:" << std::endl;
-	std::cin >> ShippingAddress::country;
-	std::cout << "Please enter your surname:" << std::endl;
-	std::cin >> ShippingAddress::city;
-	std::cout << "Please enter your email:" << std::endl;
-	std::cin >> ShippingAddress::zipCode;
-	std::cout << "Please enter your phone number:" << std::endl;
-	std::cin >> ShippingAddress::address;
+	std::cin >> shippingAdress.country;
+	std::cout << "Please enter the city:" << std::endl;
+	std::cin >> shippingAdress.city;
+	std::cout << "Please enter the zip Code:" << std::endl;
+	std::cin >> shippingAdress.zipCode;
+	std::cout << "Please enter your address:" << std::endl;
+	std::cin >> shippingAdress.address;
 }

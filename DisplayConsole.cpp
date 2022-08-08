@@ -1,4 +1,4 @@
-#include "displayConsole.h"
+#include "DisplayConsole.h"
 
 void DisplayConsole::printList(Stock* stock)
 {	

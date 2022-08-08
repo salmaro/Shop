@@ -1,4 +1,4 @@
-#include "cart.h"
+#include "Cart.h"
 
 float Cart::getTotalPrice()
 {
@@ -159,18 +159,20 @@ void Cart::printCart()
 	}
 }
 
-void Cart::checkoutCart(Client *client)
+int Cart::checkoutCart()
 {
 	printCart();
-	client->setPersonalData();
-	payment();
-}
-
-void Cart::payment()
-{
-	//total price
-	std::cout << " Your total price is: " << this->getTotalPrice() << std::endl;
-
-	std::cout << " Choose method of payment: " << std::endl;
+	// confirmation to checkout 
+	//if true 
+	return 1;
 	
 }
+
+//void Cart::payment()
+//{
+//	//total price
+//	std::cout << " Your total price is: " << this->getTotalPrice() << std::endl;
+//
+//	std::cout << " Choose method of payment: " << std::endl;
+//	
+//}
