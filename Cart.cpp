@@ -13,12 +13,14 @@ void Cart::addProduct(int productID)
 	Product* products = magazyn.getProductID();
 	if (currentCart.find(products + (productID-1)) == currentCart.end()) {
 		currentCart.insert({ products + (productID - 1), 1 });
-		//std::cout << "chosenProduct pointer: " << chosenProduct << std::endl;
 		magazyn.subtractQuantity(products + (productID - 1));
+		std::cout << "Add to cart product: " << (products[productID - 1]).getName() << std::endl;
+
 	}
 	else {
 		++currentCart[(products + (productID - 1))];
 		magazyn.subtractQuantity(products + (productID - 1));
+		std::cout << "Add to cart product: " << (products[productID - 1]).getName() << std::endl;
 	}
 }
 
@@ -163,7 +165,7 @@ void Cart::checkoutCart()
 	this->printCart();
 	//opcaj wpisania danych adresowych
 	std::cout << "Please enter your name:" << std::endl;
-	//std::cin >> this->imie;
+	//std::cin >> Cimie;
 	std::cout << "Please enter your surname:" << std::endl;
 	//std::cin >> this->nazwisko;
 	std::cout << "Please enter your email:" << std::endl;

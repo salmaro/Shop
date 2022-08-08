@@ -6,27 +6,30 @@
 class Client :
     public User
 { 
-public:
+private:
     std::string imie;
     std::string nazwisko;
     std::string email;
     std::string phoneNumber;
 
-    struct BillingAddress 
+   static struct BillingAddress 
     {
-        std::string country;
-        std::string city;
-        std::string zipCode;
-        std::string address;
+        static std::string country;
+        static std::string city;
+        static std::string zipCode;
+        static std::string address;
 
     };
-    struct ShippingAddress
+    static struct ShippingAddress
     {
-        std::string country;
-        std::string city;
-        std::string zipCode;
-        std::string address;
+        static std::string country;
+        static std::string city;
+        static std::string zipCode;
+        static std::string address;
 
     };
     Cart koszyk;
+
+    void setBillingAddress();
+    void setShippingAddress();
 };

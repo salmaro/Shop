@@ -104,10 +104,7 @@ void DisplayConsole::userPanel() {
 		std::cout << "Wybierze pozcyje produktu: " << std::endl;
 		std::cin >> produktID;
 
-		//std::cout << "newItem pointer: " << newItem;
 		koszyk.addProduct(produktID);
-		std::cout << "Add to cart product: " << magazyn.getProductID()->getName() << std::endl;
-		//koszyk.displayCart();
 		system("Pause");
 
 		if (choice == 1) {
