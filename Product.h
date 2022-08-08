@@ -4,6 +4,7 @@
 
 class Product
 {
+private:
 	float price;
 	std::string name;
 	std::string category;

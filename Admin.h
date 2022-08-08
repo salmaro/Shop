@@ -1,7 +1,7 @@
 #pragma once
-#include "client.h"
-#include "user.h"
-#include "stock.h"
+#include "Client.h"
+#include "User.h"
+#include "Stock.h"
 #include <map>
 #include <iostream>
 

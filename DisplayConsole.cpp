@@ -1,6 +1,6 @@
 #include "displayConsole.h"
 
-void DisplayConsole::printList()
+void DisplayConsole::printList(Stock* stock)
 {	
 	//std::map<Product*, int>* magazyn1 = magazyn.getStorage();
 	/*for (auto e: magazyn.getStorage()) {
@@ -8,25 +8,25 @@ void DisplayConsole::printList()
 			<< std::right << "\tMagazine: " << e.second << std::endl;
 	}*/
 	size_t i{ 1 };
-	for (std::map<Product*, int>::iterator it = magazyn.getStorage()->begin(); it != magazyn.getStorage()->end(); it++) {
+	for (std::map<Product*, int>::iterator it = stock->getStorage()->begin(); it != stock->getStorage()->end(); it++) {
 		std::cout<<std::setw(3)<<std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
 			<< std::left << std::setw(10) << "Magazine: " << it->second
 			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
 		i++;
 	}
+	
 }
 
-void DisplayConsole::printWelcomeScreen(Admin* admin, Client* client) {
+void DisplayConsole::printWelcomeScreen() {
 
 	std::cout << "\t+--------------------------------------------+\n";
 	std::cout << "\t|                                            |\n";
 	std::cout << "\t|                 SHOPePePePe                |\n";
 	std::cout << "\t|                                            |\n";
 	std::cout << "\t+--------------------------------------------+\n";
-	loginAndPassword(admin, client);
 }
 
-void DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
+int DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 	std::string userInputLogin, userInputPassword;
 
 	std::cout << "\n\tEnter login >> ";
@@ -36,21 +36,19 @@ void DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 	std::cin >> userInputPassword;
 	std::cout << std::endl;
 
-	do {
-		if (userInputLogin == admin->getLogin() && userInputPassword == admin->getPassword()) {
-			adminPanel();
-		}
-		else if (userInputLogin == client->getLogin() && userInputPassword == client->getPassword()) {
-			userPanel();
-		}
-		else {
-			std::cout << "\n\t!!! Wrong login or password !!! \nTRY AGAIN\n";
-			std::cin.clear();
-			std::cin.ignore(100, '\n');
-		}
 
-	} while ((userInputLogin != admin->getLogin() || userInputPassword != admin->getPassword()) ||
-		(userInputLogin != client->getLogin() || userInputPassword != client->getPassword()));
+	if (userInputLogin == admin->getLogin() && userInputPassword == admin->getPassword()) {
+		return 2;
+	}
+	else if (userInputLogin == client->getLogin() && userInputPassword == client->getPassword()) {
+		return 1;
+	}
+	else {
+		std::cout << "\n\t!!! Wrong login or password !!! \nTRY AGAIN\n";
+		std::cin.clear();
+		std::cin.ignore(100, '\n');
+		return 0;
+	}	
 }
 
 void DisplayConsole::adminPanel() {
@@ -79,10 +77,10 @@ void DisplayConsole::adminPanel() {
 	}
 }
 
-void DisplayConsole::userPanel() {
+int DisplayConsole::userPanel(Client* client, Stock* stock) {
 	std::cout << "\t\t1. Display all product in the shop\n";
 	std::cout << "\t\t2. Display cart\n";
-	std::cout << "\t\t3. Choose product\n\n>> "; // choode category
+	std::cout << "\t\t3. Chekout\n\n>> ";
 
 	int choice;
 	std::cin >> choice;
@@ -90,7 +88,7 @@ void DisplayConsole::userPanel() {
 	std::cin.clear();
 
 	if (choice == 1) {
-		printList();
+		printList(stock);
 		std::cout << std::endl;
 		std::cout << "Select products\n";
 		//std::cout << "1. Sort products\n";
@@ -99,32 +97,31 @@ void DisplayConsole::userPanel() {
 		//std::cin >> choice;
 		//std::cin.clear();
 
-
 		int produktID;
 		std::cout << "Wybierze pozcyje produktu: " << std::endl;
 		std::cin >> produktID;
 
-		koszyk.addProduct(produktID);
+		client->koszyk.addProduct(produktID, stock);
 		system("Pause");
 
 		if (choice == 1) {
 			system("cls");
-			printTypeOfSorting();
+			printTypeOfSorting(stock);
 		}
 		else if (choice == 2) {
 			system("cls");
-			printTypeOfFiltering();
+			printTypeOfFiltering(stock);
 		}
 	}
 	else if (choice == 2) {
-		koszyk.displayCart();
+		client->koszyk.displayCart();
 	}
 	else if (choice == 3) {
-
+		return 3;
 	}
 }
 
-void DisplayConsole::printTypeOfSorting() {
+void DisplayConsole::printTypeOfSorting(Stock* stock) {
 	int choiceOfSorting;
 
 	std::cout << "\n\t----- Choose type of sorting -----\n\n";
@@ -137,22 +134,22 @@ void DisplayConsole::printTypeOfSorting() {
 
 	switch (choiceOfSorting) {
 	case 1:
-		sortPriceDescending();
+		sortPriceDescending(stock);
 		break;
 	case 2:
-		sortPriceAscending();
+		sortPriceAscending(stock);
 		break;
 	case 3:
-		sortInAlphabeticalOrder();
+		sortInAlphabeticalOrder(stock);
 		break;
 	case 4:
-		sortInReverseAlphabeticalOrder();
+		sortInReverseAlphabeticalOrder(stock);
 		break;
 	default: std::cout << "\nThere is no such option. Try again \n\n";
 	}
 }
 
-void DisplayConsole::printTypeOfFiltering()
+void DisplayConsole::printTypeOfFiltering(Stock* stock)
 {
 	int choiceOfFiltering;
 
@@ -164,18 +161,18 @@ void DisplayConsole::printTypeOfFiltering()
 
 	switch (choiceOfFiltering) {
 	case 1:
-		filterByCategory();
+		filterByCategory(stock);
 		break;
 	case 2:
-		filterBySupplier();
+		filterBySupplier(stock);
 		break;
 	default: std::cout << "There is no such option. Try again.\n\n";
 	}
 }
 
-void DisplayConsole::sortPriceAscending()
+void DisplayConsole::sortPriceAscending(Stock* stock)
 {
-	std::map<Product*, int> *magazyn1 = magazyn.getStorage();
+	std::map<Product*, int> *magazyn1 = stock->getStorage();
 	std::multimap<float, Product*, std::less<float>> magazynek;
 
 	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
@@ -188,10 +185,10 @@ void DisplayConsole::sortPriceAscending()
 	}
 }
 
-void DisplayConsole::filterByCategory()
+void DisplayConsole::filterByCategory(Stock* stock)
 {
 	int category = getCategory();
-	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = stock->getStorage();
 
 	if (category == 1 ) {
 		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
@@ -231,10 +228,10 @@ void DisplayConsole::filterByCategory()
 	}
 }
 
-void DisplayConsole::filterBySupplier()
+void DisplayConsole::filterBySupplier(Stock* stock)
 {
 	int supplier = getSupplier();
-	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = stock->getStorage();
 
 	if (supplier == 1) {
 		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
@@ -302,9 +299,9 @@ int DisplayConsole::getSupplier()
 	return supplierChoose;
 }
 
-void DisplayConsole::sortInReverseAlphabeticalOrder()
+void DisplayConsole::sortInReverseAlphabeticalOrder(Stock * stock)
 {
-	std::map<Product*, int> *magazyn1 = magazyn.getStorage();
+	std::map<Product*, int> *magazyn1 = stock->getStorage();
 	std::multimap<std::string, Product*, std::greater<std::string>> magazynek;
 
 	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
@@ -318,9 +315,9 @@ void DisplayConsole::sortInReverseAlphabeticalOrder()
 	}
 }
 
-void DisplayConsole::sortInAlphabeticalOrder()
+void DisplayConsole::sortInAlphabeticalOrder(Stock* stock)
 {
-	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = stock->getStorage();
 	std::multimap<std::string, Product*, std::less<std::string>> magazynek;
 
 	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
@@ -334,9 +331,9 @@ void DisplayConsole::sortInAlphabeticalOrder()
 	}
 }
 
-void DisplayConsole::sortPriceDescending()
+void DisplayConsole::sortPriceDescending(Stock * stock)
 {
-	std::map<Product*, int>* magazyn1 = magazyn.getStorage();
+	std::map<Product*, int>* magazyn1 = stock->getStorage();
 	std::multimap<float, Product*, std::greater<float>> magazynek;
 
 	for (/*std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++*/auto it: *magazyn1) {

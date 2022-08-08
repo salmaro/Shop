@@ -1,30 +1,25 @@
 #pragma once
-#include "stock.h"
 #include <iomanip>
-#include "shop.h"
-//#include "Client.h"
+#include <map>
+#include "Shop.h"
 
-class Cart :
-    public Shop
+
+class Cart
 {
 private:
     std::map<Product*, int> currentCart;
     float totalPrice;
-
 public:
-
     float getTotalPrice();
-    void addProduct(int productID);
+    void addProduct(int productID, Stock* stock);
     void removeProduct();
-    void changeQuantity(Product* chosenProduct);
+    void changeQuantity(Product* chosenProduct, Stock * stock);
     void displayCart();
     std::map<Product*, int> getCurrentCart();
     void cartOptions();
     void editCartOptions();
     void printCart();
-    void checkoutCart();
+    void checkoutCart(Client* client);
     void payment();
-
- 
 };
 

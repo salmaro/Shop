@@ -8,18 +8,18 @@ float Cart::getTotalPrice()
 	return totalPrice;
 }
 
-void Cart::addProduct(int productID)
+void Cart::addProduct(int productID, Stock* stock)
 {
-	Product* products = magazyn.getProductID();
+	Product* products = stock->getProductID();
 	if (currentCart.find(products + (productID-1)) == currentCart.end()) {
 		currentCart.insert({ products + (productID - 1), 1 });
-		magazyn.subtractQuantity(products + (productID - 1));
+		stock->subtractQuantity(products + (productID - 1));
 		std::cout << "Add to cart product: " << (products[productID - 1]).getName() << std::endl;
 
 	}
 	else {
 		++currentCart[(products + (productID - 1))];
-		magazyn.subtractQuantity(products + (productID - 1));
+		stock->subtractQuantity(products + (productID - 1));
 		std::cout << "Add to cart product: " << (products[productID - 1]).getName() << std::endl;
 	}
 }
@@ -29,21 +29,21 @@ void Cart::removeProduct()
 
 }
 
-void Cart::changeQuantity(Product* chosenProduct)
+void Cart::changeQuantity(Product* chosenProduct, Stock* stock)
 {
 	if (currentCart.find(chosenProduct) == currentCart.end()) {
 		currentCart.insert({ chosenProduct, 1 });
 		//std::cout << "chosenProduct pointer: " << chosenProduct << std::endl;
-		magazyn.subtractQuantity(chosenProduct);
+		stock->subtractQuantity(chosenProduct);
 	}
 	else {
 		currentCart.find(chosenProduct)->second--;
-		magazyn.subtractQuantity(chosenProduct);
+		stock->subtractQuantity(chosenProduct);
 	}
 }
 
-void Cart::displayCart()
-{
+void Cart::displayCart(){
+	
 	size_t i{ 1 };
 	if (currentCart.empty()) {
 		std::cout << "Your cart is empty :( ..." << std::endl;
@@ -159,10 +159,10 @@ void Cart::printCart()
 	}
 }
 
-void Cart::checkoutCart()
+void Cart::checkoutCart(Client *client)
 {
 	printCart();
-	//setPersonalData();
+	client->setPersonalData();
 	payment();
 }
 

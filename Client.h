@@ -1,6 +1,6 @@
 #pragma once
-#include "user.h"
-#include "cart.h"
+#include "User.h"
+#include "Cart.h"
 #include<string>
 
 class Client :
@@ -28,8 +28,9 @@ private:
         static std::string address;
 
     };
+    
+public:
     Cart koszyk;
-
     void setPersonalData();
     void setBillingAddress();
     void setShippingAddress();

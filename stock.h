@@ -1,6 +1,6 @@
 #pragma once
 #include <map>
-#include "product.h"
+#include "Product.h"
 #include <vector>
 #include <iomanip>
 
