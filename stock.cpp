@@ -6,11 +6,11 @@ Stock::Stock() {
 
 	products_ptr = new Product[20];
 
-	Product sekator(30.85, "Sekator", "OGROD", "Sharp");
-	Product kosiarka(1200.50, "Kosiarka", "OGROD", "Bosch");
-	Product myjka(700.75, "Myjka", "OGROD", "Bosch");
-	Product lopata(40.34, "Lopata", "OGROD", "Bosch");
-	Product grabie(30.21, "Grabie", "OGROD", "Sharp");
+	Product sekator(30.85, "Sekator", "GARDEN", "Sharp");
+	Product kosiarka(1200.50, "Kosiarka", "GARDEN", "Bosch");
+	Product myjka(700.75, "Myjka", "GARDEN", "Bosch");
+	Product lopata(40.34, "Lopata", "GARDEN", "Bosch");
+	Product grabie(30.21, "Grabie", "GARDEN", "Sharp");
 
 	Product telewizor(2000.87, "Telewizor", "RTV", "Samsung");
 	Product telefon(300.12, "Telefon", "RTV", "LG");
@@ -77,6 +77,9 @@ Stock::Stock() {
 	storage.insert({ products_ptr + 17, 8 });
 	storage.insert({ products_ptr + 18, 6 });
 	storage.insert({ products_ptr + 19, 4 });
+
+	category = { "GARDEN" , "RTV", "AGD", "TOYS" };
+	supplier = { "Bosch" , "Sharp", "LG", "Samsung" };
 }
 
 Stock::~Stock()
@@ -113,6 +116,16 @@ void Stock::subtractQuantity(Product* insertProduct)
 	for (auto e : productId ) {
 		std::cout << "wskaznik: "<<e << std::endl;
 	}*/
+}
+
+std::vector<std::string>* Stock::getCategoryList()
+{
+	return &category;
+}
+
+std::vector<std::string>* Stock::getSupplierList()
+{
+	return &supplier;
 }
 
 
