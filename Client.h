@@ -19,7 +19,7 @@ private:
          std::string zipCode;
          std::string address;
     };
-    BillingAddress billingAdress;
+    BillingAddress billingAddress;
 
      struct ShippingAddress
     {
@@ -28,12 +28,14 @@ private:
          std::string zipCode;
          std::string address;
     };
-     ShippingAddress shippingAdress;
+     ShippingAddress shippingAddress;
 public:
     Cart koszyk;
     void setPersonalData();
     void setBillingAddress();
-    void setShippingAddress();
+    void setShippingAddress(int i);
+    struct BillingAddress getBillingAddress();
+    void displayAddress();
 };
 
 

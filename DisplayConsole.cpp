@@ -80,7 +80,7 @@ void DisplayConsole::adminPanel() {
 int DisplayConsole::userPanel(Client* client, Stock* stock) {
 	std::cout << "\t\t1. Display all product in the shop\n";
 	std::cout << "\t\t2. Display cart\n";
-	std::cout << "\t\t3. Chekout\n\n>> ";
+	std::cout << "\t\t3. Checkout\n\n>> ";
 
 	int choice;
 	std::cin >> choice;
@@ -345,4 +345,17 @@ void DisplayConsole::sortPriceDescending(Stock * stock)
 			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second]
 			<< "\tPrice: " << std::setw(15) << std::left << it->second->getPrice() << std::endl << std::endl;
 	}
+}
+
+int DisplayConsole::orderConfirmation()
+{
+	int input;
+	std::cout << "Whether your order is correct?" << std::endl;
+	std::cout << "69 - YES" << std::endl;
+	std::cout << "96 - NO" << std::endl;
+	std::cout << ">> ";
+	std::cin >> input;
+
+	return input;
+
 }

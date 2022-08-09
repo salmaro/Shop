@@ -1,5 +1,6 @@
 #pragma once
 #include "DisplayConsole.h"
+#include <string>
 
 
 class Shop
@@ -9,6 +10,6 @@ protected:
 public:
 	static Stock magazyn;
 	Stock* stock = &magazyn;
-	void session();
-	void payment();
+	int session();
+	void payment(Client *klient);
 };

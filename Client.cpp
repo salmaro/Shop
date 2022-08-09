@@ -17,24 +17,55 @@ void Client::setBillingAddress()
 	//ShippingAddress{"Poland","Warsaw","28608","Powstancow 10/2"};
 
 	std::cout << "Please enter your coutry:" << std::endl;
-	std::cin >> billingAdress.country;
+	std::cin >> billingAddress.country;
 	std::cout << "Please enter the city:" << std::endl;
-	std::cin >> billingAdress.city;
+	std::cin >> billingAddress.city;
 	std::cout << "Please enter ythe zip Code:" << std::endl;
-	std::cin >> billingAdress.zipCode;
+	std::cin >> billingAddress.zipCode;
 	std::cout << "Please enter your address:" << std::endl;
-	std::cin >> billingAdress.address;
+	std::cin >> billingAddress.address;
 	
 }
 
-void Client::setShippingAddress()
+void Client::setShippingAddress(int i)
 {
-	std::cout << "Please enter your coutry:" << std::endl;
-	std::cin >> shippingAdress.country;
-	std::cout << "Please enter the city:" << std::endl;
-	std::cin >> shippingAdress.city;
-	std::cout << "Please enter the zip Code:" << std::endl;
-	std::cin >> shippingAdress.zipCode;
-	std::cout << "Please enter your address:" << std::endl;
-	std::cin >> shippingAdress.address;
+	if (i == 1) {
+		
+		 shippingAddress.country = billingAddress.country;
+		 shippingAddress.city = billingAddress.city;
+		 shippingAddress.zipCode = billingAddress.zipCode;
+		 shippingAddress.address = billingAddress.address;
+	}
+	else {
+		std::cout << "Please enter your coutry:" << std::endl;
+		std::cin >> shippingAddress.country;
+		std::cout << "Please enter the city:" << std::endl;
+		std::cin >> shippingAddress.city;
+		std::cout << "Please enter the zip Code:" << std::endl;
+		std::cin >> shippingAddress.zipCode;
+		std::cout << "Please enter your address:" << std::endl;
+		std::cin >> shippingAddress.address;
+	}
+}
+
+struct Client ::BillingAddress Client::getBillingAddress()
+{
+	return billingAddress;
+}
+
+void Client::displayAddress()
+{
+	std::cout << "Shipping Address: \n" 
+		<< shippingAddress.address << std::endl
+		<< shippingAddress.city << std::endl 
+		<< shippingAddress.country << std::endl 
+		<< shippingAddress.zipCode << std::endl;
+
+	std::cout << std::endl;
+	std::cout << "Billing Address: \n" 
+		<< billingAddress.address << std::endl
+		<< billingAddress.city << std::endl
+		<< billingAddress.country << std::endl
+		<< billingAddress.zipCode << std::endl;
+	std::cout << std::endl;
 }

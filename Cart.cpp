@@ -162,10 +162,14 @@ void Cart::printCart()
 int Cart::checkoutCart()
 {
 	printCart();
-	// confirmation to checkout 
-	//if true 
-	return 1;
+	int input;
+	std::cout << "Whether your order is correct?" << std::endl;
+	std::cout << "69 - YES" << std::endl;
+	std::cout << "96 - NO" << std::endl;
+	std::cout << ">> ";
+	std::cin >> input;
 	
+	return input;
 }
 
 //void Cart::payment()

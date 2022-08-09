@@ -31,5 +31,6 @@ public:
     void sortInAlphabeticalOrder(Stock* stock);
     //void printCartContents();
     void sortPriceDescending(Stock* stock);
+    int orderConfirmation();
 
 };
