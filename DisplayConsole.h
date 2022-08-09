@@ -23,12 +23,13 @@ public:
     void printTypeOfSorting(Stock* stock);
     void printTypeOfFiltering(Stock * stock);
     void sortPriceAscending(Stock* stock);
-    void filterByCategory(Stock* stock);
-    void filterBySupplier(Stock* stock);
-    int getCategory();
-    int getSupplier();
+    void filterByCategory(Stock* stock, int category);
+    void filterBySupplier(Stock* stock, int supplier);
+    int getCategory(Stock* stock);
+    int getSupplier(Stock* stock);
     void sortInReverseAlphabeticalOrder(Stock* stock);
     void sortInAlphabeticalOrder(Stock* stock);
+    void sortInOrder(Stock* stock, int direct);
     //void printCartContents();
     void sortPriceDescending(Stock* stock);
     int orderConfirmation();
