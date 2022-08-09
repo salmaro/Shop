@@ -6,29 +6,29 @@ Stock::Stock() {
 
 	products_ptr = new Product[20];
 
-	Product sekator(30, "Sekator", "OGROD", "Sharp");
-	Product kosiarka(1200, "Kosiarka", "OGROD", "Bosch");
-	Product myjka(700, "Myjka", "OGROD", "Bosch");
-	Product lopata(40, "Lopata", "OGROD", "Bosch");
-	Product grabie(30, "Grabie", "OGROD", "Sharp");
+	Product sekator(30.85, "Sekator", "OGROD", "Sharp");
+	Product kosiarka(1200.50, "Kosiarka", "OGROD", "Bosch");
+	Product myjka(700.75, "Myjka", "OGROD", "Bosch");
+	Product lopata(40.34, "Lopata", "OGROD", "Bosch");
+	Product grabie(30.21, "Grabie", "OGROD", "Sharp");
 
-	Product telewizor(2000.00, "Telewizor", "RTV", "Samsung");
-	Product telefon(300.00, "Telefon", "RTV", "LG");
-	Product laptop(3000.00, "Laptop", "RTV", "Samsung");
-	Product sluchawki(100.00, "Sluchawki", "RTV", "LG");
-	Product radio(200.00, "Radio", "RTV", "Bosch");
+	Product telewizor(2000.87, "Telewizor", "RTV", "Samsung");
+	Product telefon(300.12, "Telefon", "RTV", "LG");
+	Product laptop(3000.23, "Laptop", "RTV", "Samsung");
+	Product sluchawki(100.11, "Sluchawki", "RTV", "LG");
+	Product radio(200.09, "Radio", "RTV", "Bosch");
 
-	Product lodowka(1500.00, "Lodowka", "AGD", "LG");
-	Product mikrofalowka(600.00, "Mikrofalowka", "AGD", "Bosch");
-	Product odkurzacz(700.00, "Odkurzacz", "AGD", "Sharp");
-	Product piekarnik(1200.00, "Piekarnik", "AGD", "Bosch");
-	Product pralka(2300.00, "Pralka", "AGD", "Sharp");
+	Product lodowka(1500.05, "Lodowka", "AGD", "LG");
+	Product mikrofalowka(599.99, "Mikrofalowka", "AGD", "Bosch");
+	Product odkurzacz(700.35, "Odkurzacz", "AGD", "Sharp");
+	Product piekarnik(1200.15, "Piekarnik", "AGD", "Bosch");
+	Product pralka(1999.99, "Pralka", "AGD", "Sharp");
 
-	Product samochodzik(20.00, "Samochod", "TOYS", "Sharp");
-	Product klocki(200.00, "Klocki", "TOYS", "LG");
-	Product lalka(40.00, "Lalka", "TOYS", "Samsung");
-	Product puzzle(30.00, "Puzzle", "TOYS", "Bosch");
-	Product maskotka(100.00, "Maskotka", "TOYS", "Sharp");
+	Product samochodzik(20.50, "Samochod", "TOYS", "Sharp");
+	Product klocki(199.99, "Klocki", "TOYS", "LG");
+	Product lalka(45.10, "Lalka", "TOYS", "Samsung");
+	Product puzzle(29.99, "Puzzle", "TOYS", "Bosch");
+	Product maskotka(99.99, "Maskotka", "TOYS", "Sharp");
 
 	products_ptr[0] = sekator;
 	products_ptr[1] = kosiarka;

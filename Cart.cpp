@@ -52,15 +52,15 @@ void Cart::displayCart(){
 	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
 		std::cout << i <<". Product: " << std::setw(15) << std::left << it->first->getName()
 			<< std::left << std::setw(10) << "Quantity: " << it->second
-			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << std::endl;
+			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << " $" << std::endl;
 		i++;
 		}
 	totalPrice = {};
-	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << "\033[0m \n\n\n" << std::endl;
+	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
 	this->cartOptions();
 	}
 	totalPrice = {};
-	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << "\033[0m \n\n\n" << std::endl;
+	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
 }
 
 std::map<Product*, int> Cart::getCurrentCart()
