@@ -284,6 +284,29 @@ void DisplayConsole::sortInOrder(Stock* stock, int direct)
 	}
 }
 
+void DisplayConsole::sortInOrder(Stock* stock, int direct)
+{
+	std::map<Product*, int>* magazyn1 = stock->getStorage();
+	std::multimap<std::string, Product*, std::greater<std::string>> magazynek;
+	if (direct == 3) {
+		std::multimap<std::string, Product*, std::greater<std::string>> magazynek;
+	}
+	else if (direct == 4) {
+		std::multimap<std::string, Product*, std::less<std::string>> magazynek;
+	}
+
+	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
+		magazynek.insert({ it->first->getName(),it->first });
+	}
+	int i{ 1 };
+	for (std::multimap<std::string, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
+		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
+			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
+			<< "\tPrice: " << it->second->getPrice() << " $" << std::endl << std::endl;
+		i++;
+	}
+}
+
 void DisplayConsole::sortPriceDescending(Stock * stock)
 {
 	int i = 1;
