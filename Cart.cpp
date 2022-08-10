@@ -31,7 +31,7 @@ void Cart::removeProduct(Stock* stock)
 	printCart();
 	int productToRemove;
 	std::cout << ">> ";
-	std::cin >> productToRemove;
+	productToRemove = validationInput(1, static_cast <int> (currentCart.size()));
 
 	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
 
@@ -53,7 +53,7 @@ void Cart::changeQuantity(Stock* stock)
 	printCart();
 	int productToChange;
 	std::cout << ">> ";
-	std::cin >> productToChange;
+	productToChange = validationInput(1, static_cast <int> (currentCart.size()));
 
 	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
 
@@ -66,20 +66,11 @@ void Cart::changeQuantity(Stock* stock)
 	}
 	std::cout << "\n\n \t\t Your current cart: \n";
 	this->printCart();
-
-	//if (currentCart.find(chosenProduct) == currentCart.end()) {
-	//	currentCart.insert({ chosenProduct, 1 });
-	//	//std::cout << "chosenProduct pointer: " << chosenProduct << std::endl;
-	//	stock->addQuantity(chosenProduct);
-	//}
-	//else {
-	//	currentCart.find(chosenProduct)->second--;
-	//	stock->addQuantity(chosenProduct);
-	//}
 }
 
 void Cart::displayCart(Stock* stock){
 	
+	totalPrice = {};
 	size_t i{ 1 };
 	if (currentCart.empty()) {
 		std::cout << "Your cart is empty :( ..." << std::endl;
@@ -88,31 +79,27 @@ void Cart::displayCart(Stock* stock){
 	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
 		std::cout << i <<". Product: " << std::setw(15) << std::left << it->first->getName()
 			<< std::left << std::setw(10) << "Quantity: " << it->second
-			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice() << " $" << std::endl;
+			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice()*it->second << " $" << std::endl;
 		i++;
 		}
-	totalPrice = {};
 	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
-	this->cartOptions(stock);
+	/*this->cartOptions(stock);*/
 	}
-	totalPrice = {};
-	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
+	//totalPrice = {};
+	//std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
 }
 
-std::map<Product*, int> Cart::getCurrentCart()
-{
+std::map<Product*, int> Cart::getCurrentCart() {
 	return currentCart;
 }
 
-void Cart::cartOptions(Stock* stock)
-{
+void Cart::cartOptions(Stock* stock) {
 	std::cout << "1. Continue shopping " << std::endl;
 	std::cout << "2. Edit cart " << std::endl;
 	std::cout << "3. Checkout " << std::endl;
 	
 	int userInput{};
-	std::cin >> userInput;
-
+	userInput = validationInput(1,3);
 
 	switch (userInput) {
 	case 1:
@@ -122,19 +109,18 @@ void Cart::cartOptions(Stock* stock)
 		editCartOptions(stock);
 		break;
 	case 3:
-		checkoutCart();
+		checkoutCart(stock);
 		break;
 	}
 }
 
-void Cart::editCartOptions(Stock* stock)
-{
+void Cart::editCartOptions(Stock* stock) {
 	std::cout << "1. Remove product " << std::endl;
 	std::cout << "2. Change quantity " << std::endl;
 	std::cout << "3. Remove all product " << std::endl;
 
 	int userInput;
-	std::cin >> userInput;
+	userInput = validationInput(1, 3);
 
 	system("cls");
 	size_t i{0};
@@ -144,33 +130,14 @@ void Cart::editCartOptions(Stock* stock)
 		break;
 	case 2:
 		changeQuantity(stock);
-		/*std::cout << "Change quantity: \n ";
-		this->printCart();
-		int productToRemoveObject;
-		std::cout << ">> ";
-		std::cin >> productToRemoveObject;
-
-		for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
-
-			if ((productToRemoveObject - 1) == i) {
-				currentCart.erase(it);
-				break;
-			}
-			i++;
-		}
-		std::cout << "\n\n \t\t Your current cart: \n";
-		this->printCart();*/
 		break;
 	case 3:
 		break;
-
 	}
-
 }
 
-void Cart::printCart()
-{
-	size_t i{ 1 };
+void Cart::printCart() {
+	int i{ 1 };
 
 	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
 		std::cout << i << ". Product: " << std::setw(15) << std::left << it->first->getName()
@@ -180,24 +147,40 @@ void Cart::printCart()
 	}
 }
 
-int Cart::checkoutCart()
-{
-	printCart();
+int Cart::checkoutCart(Stock* stock) {
+	displayCart(stock);
 	int input;
 	std::cout << "Whether your order is correct?" << std::endl;
-	std::cout << "69 - YES" << std::endl;
-	std::cout << "96 - NO" << std::endl;
+	std::cout << "1 - YES" << std::endl;
+	std::cout << "2 - NO" << std::endl;
 	std::cout << ">> ";
-	std::cin >> input;
+	input = validationInput(1, 2);
 	
 	return input;
 }
 
-//void Cart::payment()
-//{
-//	//total price
-//	std::cout << " Your total price is: " << this->getTotalPrice() << std::endl;
-//
-//	std::cout << " Choose method of payment: " << std::endl;
-//	
-//}
+int Cart::validationInput(int start, int stop)
+{
+	std::string output;
+	bool dupy = false;
+
+	do {
+		std::getline(std::cin, output);
+
+		for (int i = 0; i < output.size(); i++) {
+			if (!isdigit(output[i])) {
+				std::cout << "That was no integer! Please enter an integer: ";
+				break;
+			}
+			else if (stoi(output) >= start && stoi(output) <= stop) {
+				return stoi(output);
+			}
+			else if (stoi(output) < start || stoi(output) > stop) {
+				std::cout << "\n--- Wrong choice, try again! ---\n";
+				break;
+			}
+			else
+				dupy = true;
+		}
+	} while (!dupy);
+}

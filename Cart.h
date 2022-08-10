@@ -21,7 +21,8 @@ public:
     void cartOptions(Stock* stock);
     void editCartOptions(Stock* stock);
     void printCart();
-    int checkoutCart();
+    int checkoutCart(Stock* stock);
+    int validationInput(int start, int stop);
 };
 
 

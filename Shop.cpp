@@ -32,7 +32,7 @@ int Shop::session() {
 		}
 	}
 	
-	if (kliencik.koszyk.checkoutCart() == 69) {
+	if (kliencik.koszyk.checkoutCart(stock) == 1) {
 		kliencik.setPersonalData();
 		kliencik.setBillingAddress();
 		int input{};
@@ -45,6 +45,7 @@ int Shop::session() {
 		kliencik.setShippingAddress(input);
 		kliencik.displayAddress();
 		payment(ptr_kliencik);
+		summaryOfOrder(ptr_kliencik);
 
 		system("pause");
 		return 0;
@@ -66,4 +67,12 @@ void Shop::payment(Client* client_ptr) {
 	std::cin >> input;
 
 	std::cout << "\nYour order is complete. Please wait for an email with payment confirmation.\n";
+}
+
+void Shop::summaryOfOrder(Client* client_ptr) {
+	client_ptr->koszyk.printCart();
+	std::cout << "Your total price is: ";
+	std::cout << client_ptr->koszyk.getTotalPrice();
+	std::cout << std::endl;
+	client_ptr->displayAddress();
 }

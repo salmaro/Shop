@@ -20,7 +20,7 @@ void Client::setBillingAddress()
 	std::cin >> billingAddress.country;
 	std::cout << "Please enter the city:" << std::endl;
 	std::cin >> billingAddress.city;
-	std::cout << "Please enter ythe zip Code:" << std::endl;
+	std::cout << "Please enter the zip Code:" << std::endl;
 	std::cin >> billingAddress.zipCode;
 	std::cout << "Please enter your address:" << std::endl;
 	std::cin >> billingAddress.address;

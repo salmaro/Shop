@@ -12,4 +12,5 @@ public:
 	Stock* stock = &magazyn;
 	int session();
 	void payment(Client *klient);
+	void summaryOfOrder(Client* client);
 };
