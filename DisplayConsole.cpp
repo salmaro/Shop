@@ -119,6 +119,7 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 	else if (choice == 3) {
 		return 3;
 	}
+	return -1;
 }
 
 void DisplayConsole::printTypeOfSorting(Stock* stock) {
@@ -228,7 +229,7 @@ int DisplayConsole::getCategory(Stock * stock)
 {
 	std::cout << "--- Choose category --- \n\n";
 
-	for (int i{ 0 }; i < stock->getCategoryList()->size(); i++) {
+	for (size_t i{ 0 }; i < stock->getCategoryList()->size(); i++) {
 		std::cout <<"\t" +std:: to_string(i+1) + ". " << stock->getCategoryList()->at(i) << std::endl;
 	}
 	int categoryChoose;
@@ -240,7 +241,7 @@ int DisplayConsole::getCategory(Stock * stock)
 int DisplayConsole::getSupplier(Stock* stock)
 {
 	std::cout << "--- Choose supplier --- \n\n";
-	for (int i{ 0 }; i < stock->getSupplierList()->size(); i++) {
+	for (size_t i{ 0 }; i < stock->getSupplierList()->size(); i++) {
 		std::cout << "\t" + std::to_string(i + 1) + ". " << stock->getSupplierList()->at(i) << std::endl;
 	}
 	int supplierChoose;
