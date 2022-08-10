@@ -2,6 +2,7 @@
 
 float Cart::getTotalPrice()
 {
+	totalPrice = 0;
 	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
 		totalPrice += it->first->getPrice() * it->second;
 	}
@@ -79,10 +80,10 @@ void Cart::displayCart(Stock* stock){
 	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
 		std::cout << i <<". Product: " << std::setw(15) << std::left << it->first->getName()
 			<< std::left << std::setw(10) << "Quantity: " << it->second
-			<< "\tPrice: " << std::setw(15) << std::left << it->first->getPrice()*it->second << " $" << std::endl;
+			<< "\tPrice: "  << std::left << " $" << it->first->getPrice()*it->second  << std::endl;
 		i++;
 		}
-	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
+	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << " $" << this->getTotalPrice() <<  "\033[0m \n\n\n" << std::endl;
 	/*this->cartOptions(stock);*/
 	}
 	//totalPrice = {};

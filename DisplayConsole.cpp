@@ -8,7 +8,7 @@ void DisplayConsole::printList(Stock* stock)
 		std::cout<<std::setw(4)<<std::left << "\t" << std::setw(4) << std::left << std::to_string(i) + ". "
 			<< "Product: " << std::setw(15) << std::left << it->first->getName()
 			<< std::left << std::setw(10) << "Magazine: " << it->second
-			<< "\tPrice: " << it->first->getPrice() << " $" << std::endl;
+			<< "\tPrice: " << " $" << it->first->getPrice()  << std::endl;
 		i++;
 	}
 }
@@ -188,7 +188,7 @@ void DisplayConsole::sortPriceAscending(Stock* stock)
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
 			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
-			<< "\tPrice: " << it->second->getPrice() << " $" << std::endl << std::endl;
+			<< "\tPrice: " << " $" << it->second->getPrice()  << std::endl << std::endl;
 		i++;
 	}
 }
@@ -202,7 +202,7 @@ void DisplayConsole::filterByCategory(Stock* stock, int category)
 				std::cout << std::setw(4) << std::left << "\t" << std::setw(4) << std::left << std::to_string(s) + ". "
 					<< "Product: " << std::setw(15) << std::left << it->first->getName()
 					<< std::left  << "Magazine: " << it->second
-					<< std::left  << "\tPrice: " << it->first->getPrice() << " $" << std::endl;
+					<< std::left  << "\tPrice: " << " $" << it->first->getPrice()  << std::endl;
 				s++;
 			}	
 		}
@@ -218,7 +218,7 @@ void DisplayConsole::filterBySupplier(Stock* stock, int supplier)
 			std::cout << std::setw(4) << std::left << "\t" << std::setw(4) << std::left << std::to_string(s) + ". "
 				<< "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << "Magazine: " << it->second
-				<< std::left << "\tPrice: " << it->first->getPrice() << " $" << std::endl;
+				<< std::left << "\tPrice: " << " $" << it->first->getPrice()  << std::endl;
 			s++;
 		}
 	}
@@ -268,7 +268,7 @@ void DisplayConsole::sortInOrder(Stock* stock, int direct)
 	for (std::multimap<std::string, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
 			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
-			<< "\tPrice: " << it->second->getPrice() << " $" << std::endl << std::endl;
+			<< "\tPrice: " << " $" << it->second->getPrice()  << std::endl << std::endl;
 		i++;
 	}
 }
@@ -286,7 +286,7 @@ void DisplayConsole::sortPriceDescending(Stock * stock)
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
 			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
-			<< "\tPrice: " << it->second->getPrice() << " $" << std::endl << std::endl;
+			<< "\tPrice: " << " $" << it->second->getPrice()  << std::endl << std::endl;
 		i++;
 	}
 }
