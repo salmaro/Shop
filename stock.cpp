@@ -1,4 +1,4 @@
-﻿#include "Stock.h"
+﻿#include "stock.h"
 
 
 Stock::Stock() {
@@ -104,18 +104,11 @@ void Stock::subtractQuantity(Product* insertProduct)
 {
 	storage[insertProduct]--;
 	
-	/*std::cout << "jestem w substrukt, wartosc:" << insertProduct << "nazwa: " << insertProduct->getName()<<std::endl;
-	size_t i{ 1 };
-	for (std::map<Product*, int>::iterator it = storage.begin(); it != storage.end(); it++) {
-		std::cout << std::setw(3) << std::left << std::to_string(i) + ". " << "Product: " << std::setw(15) << std::left << it->first->getName()
-			<< std::left << std::setw(10) << "Magazine: " << it->second
-			<< "\tPointer: " << std::setw(15) << std::left << it->first << std::endl;
-		i++;
-	}
+}
 
-	for (auto e : productId ) {
-		std::cout << "wskaznik: "<<e << std::endl;
-	}*/
+void Stock::addQuantity(Product* insertProduct, int value)
+{
+	storage[insertProduct]+=value;
 }
 
 std::vector<std::string>* Stock::getCategoryList()

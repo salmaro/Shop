@@ -30,5 +30,6 @@ public:
     void sortInOrder(Stock* stock, int direct);
     void sortPriceDescending(Stock* stock);
     int orderConfirmation();
+    int validationInput(int start, int stop);
 
 };

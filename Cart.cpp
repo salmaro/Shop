@@ -24,25 +24,61 @@ void Cart::addProduct(int productID, Stock* stock)
 	}
 }
 
-void Cart::removeProduct()
+void Cart::removeProduct(Stock* stock)
 {
+	int i = 0;
+	std::cout << "Chose product to remove : \n ";
+	printCart();
+	int productToRemove;
+	std::cout << ">> ";
+	std::cin >> productToRemove;
 
+	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
+
+		if ((productToRemove - 1) == i) {
+			stock-> addQuantity(it->first,it->second);
+			currentCart.erase(it);
+			break;
+		}
+		i++;
+	}
+	std::cout << "\n\n \t\t Your current cart: \n";
+	printCart();
 }
 
-void Cart::changeQuantity(Product* chosenProduct, Stock* stock)
+void Cart::changeQuantity(Stock* stock)
 {
-	if (currentCart.find(chosenProduct) == currentCart.end()) {
-		currentCart.insert({ chosenProduct, 1 });
-		//std::cout << "chosenProduct pointer: " << chosenProduct << std::endl;
-		stock->subtractQuantity(chosenProduct);
+	int i = 0;
+	std::cout << "Chose product to change : \n ";
+	printCart();
+	int productToChange;
+	std::cout << ">> ";
+	std::cin >> productToChange;
+
+	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
+
+		if ((productToChange - 1) == i) {
+			it->second--;
+			stock -> addQuantity(it->first);
+			break;
+		}
+		i++;
 	}
-	else {
-		currentCart.find(chosenProduct)->second--;
-		stock->subtractQuantity(chosenProduct);
-	}
+	std::cout << "\n\n \t\t Your current cart: \n";
+	this->printCart();
+
+	//if (currentCart.find(chosenProduct) == currentCart.end()) {
+	//	currentCart.insert({ chosenProduct, 1 });
+	//	//std::cout << "chosenProduct pointer: " << chosenProduct << std::endl;
+	//	stock->addQuantity(chosenProduct);
+	//}
+	//else {
+	//	currentCart.find(chosenProduct)->second--;
+	//	stock->addQuantity(chosenProduct);
+	//}
 }
 
-void Cart::displayCart(){
+void Cart::displayCart(Stock* stock){
 	
 	size_t i{ 1 };
 	if (currentCart.empty()) {
@@ -57,7 +93,7 @@ void Cart::displayCart(){
 		}
 	totalPrice = {};
 	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
-	this->cartOptions();
+	this->cartOptions(stock);
 	}
 	totalPrice = {};
 	std::cout << "\n\n\t\t\t\t \033[1;31mTotal Price : " << this->getTotalPrice() << " $" << "\033[0m \n\n\n" << std::endl;
@@ -68,9 +104,8 @@ std::map<Product*, int> Cart::getCurrentCart()
 	return currentCart;
 }
 
-void Cart::cartOptions()
+void Cart::cartOptions(Stock* stock)
 {
-
 	std::cout << "1. Continue shopping " << std::endl;
 	std::cout << "2. Edit cart " << std::endl;
 	std::cout << "3. Checkout " << std::endl;
@@ -84,15 +119,15 @@ void Cart::cartOptions()
 
 		break;
 	case 2:
-		editCartOptions();
+		editCartOptions(stock);
 		break;
 	case 3:
+		checkoutCart();
 		break;
-	
 	}
 }
 
-void Cart::editCartOptions()
+void Cart::editCartOptions(Stock* stock)
 {
 	std::cout << "1. Remove product " << std::endl;
 	std::cout << "2. Change quantity " << std::endl;
@@ -105,32 +140,18 @@ void Cart::editCartOptions()
 	size_t i{0};
 	switch (userInput) {
 	case 1:
-	{
-		std::cout << "Chose product to remove : \n ";
-		this->printCart();
-		int productToRemove;
-		std::cout << ">> ";
-		std::cin >> productToRemove;
-
-		for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
-			if ((productToRemove - 1) == i) {
-				currentCart.erase(it);
-				break;
-			}
-			i++;
-		}
-		std::cout << "\n\n \t\t Your current cart: \n";
-		this->printCart();
-	}
+		removeProduct(stock);
 		break;
 	case 2:
-		std::cout << "Chose product to remove one object : \n ";
+		changeQuantity(stock);
+		/*std::cout << "Change quantity: \n ";
 		this->printCart();
 		int productToRemoveObject;
 		std::cout << ">> ";
 		std::cin >> productToRemoveObject;
 
 		for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
+
 			if ((productToRemoveObject - 1) == i) {
 				currentCart.erase(it);
 				break;
@@ -138,7 +159,7 @@ void Cart::editCartOptions()
 			i++;
 		}
 		std::cout << "\n\n \t\t Your current cart: \n";
-		this->printCart();
+		this->printCart();*/
 		break;
 	case 3:
 		break;

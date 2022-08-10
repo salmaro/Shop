@@ -21,6 +21,7 @@ public:
 	std::map <Product*, int >*  getStorage(); // TODO zamiast zwrocic mape, zwrocic wskaznik na mape
 	Product* getProductID();
 	void subtractQuantity(Product* insertProduct);
+	void addQuantity(Product* insertProduct, int value = 1);
 	std::vector<std::string>* getCategoryList();
 	std::vector<std::string>* getSupplierList();
 };

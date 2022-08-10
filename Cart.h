@@ -14,12 +14,12 @@ private:
 public:
     float getTotalPrice();
     void addProduct(int productID, Stock* stock);
-    void removeProduct();
-    void changeQuantity(Product* chosenProduct, Stock * stock);
-    void displayCart();
+    void removeProduct(Stock* stock);
+    void changeQuantity(Stock * stock);
+    void displayCart(Stock* stock);
     std::map<Product*, int> getCurrentCart();
-    void cartOptions();
-    void editCartOptions();
+    void cartOptions(Stock* stock);
+    void editCartOptions(Stock* stock);
     void printCart();
     int checkoutCart();
 };

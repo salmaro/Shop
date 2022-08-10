@@ -1,12 +1,8 @@
 #include "DisplayConsole.h"
 
+
 void DisplayConsole::printList(Stock* stock)
 {	
-	//std::map<Product*, int>* magazyn1 = magazyn.getStorage();
-	/*for (auto e: magazyn.getStorage()) {
-		std::cout << std::setw(25) << "Product: " << e.first->getName()
-			<< std::right << "\tMagazine: " << e.second << std::endl;
-	}*/
 	int i{ 1 };
 	for (std::map<Product*, int>::iterator it = stock->getStorage()->begin(); it != stock->getStorage()->end(); it++) {
 		std::cout<<std::setw(4)<<std::left << "\t" << std::setw(4) << std::left << std::to_string(i) + ". "
@@ -15,7 +11,6 @@ void DisplayConsole::printList(Stock* stock)
 			<< "\tPrice: " << it->first->getPrice() << " $" << std::endl;
 		i++;
 	}
-	
 }
 
 void DisplayConsole::printWelcomeScreen() {
@@ -53,7 +48,7 @@ int DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 }
 
 void DisplayConsole::adminPanel() {
-
+	
 	int adminChoice{};
 	system("cls");
 	std::cout << "\n\tADMIN PANEL\n";
@@ -62,7 +57,7 @@ void DisplayConsole::adminPanel() {
 	std::cout << "\t\t2.Remove product from stock\n";
 	std::cout << "\t\t3.Reset password\n\n";
 
-	std::cin >> adminChoice;
+	adminChoice = validationInput(1,3);
 	std::cout << std::endl;
 
 	switch (adminChoice) {
@@ -84,12 +79,10 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 	std::cout << "\t\t3. Checkout\n\n>> ";
 
 	int choice;
-	std::cin >> choice;
-	std::cout << std::endl;
-	std::cin.clear();
-	std::cin.ignore(1000, '\n');
+	choice = validationInput(1,3);
 
 	if (choice == 1) {
+
 		printList(stock);
 		std::cout << std::endl;
 		std::cout << "1. Select products\n";
@@ -98,14 +91,11 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 		std::cout << "4. Display cart\n>> ";
 		//std::cout << "5. Checkout\n\n>> ";
 
-		std::cin >> choice;
-		std::cin.clear();
-		std::cin.ignore(1000, '\n');
-
+		choice = validationInput(1,4);
 		if (choice == 1) {
 			int produktID;
 			std::cout << "Enter product ID: " << std::endl;
-			std::cin >> produktID;
+			produktID = validationInput(1,20);
 
 			client->koszyk.addProduct(produktID, stock);
 			system("Pause");
@@ -119,12 +109,12 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 			printTypeOfFiltering(stock);
 		}
 		else if (choice == 4) {
-			client->koszyk.displayCart();
+			client->koszyk.displayCart(stock);
 		}
 
 	}
 	else if (choice == 2) {
-		client->koszyk.displayCart();
+		client->koszyk.displayCart(stock);
 	}
 	else if (choice == 3) {
 		return 3;
@@ -139,7 +129,8 @@ void DisplayConsole::printTypeOfSorting(Stock* stock) {
 	std::cout << "\t2. By price  ascending\n";
 	std::cout << "\t3. By name  A - Z\n";
 	std::cout << "\t4. By name  Z - A\n\n>> ";
-	std::cin >> choiceOfSorting;
+	
+	choiceOfSorting = validationInput(1, 4);
 	std::cout << std::endl;
 
 	switch (choiceOfSorting) {
@@ -151,11 +142,9 @@ void DisplayConsole::printTypeOfSorting(Stock* stock) {
 		break;
 	case 3:
 		sortInOrder(stock, 3);
-		//sortInAlphabeticalOrder(stock);
 		break;
 	case 4:
 		sortInOrder(stock, 4);
-		//sortInReverseAlphabeticalOrder(stock);
 		break;
 	default: std::cout << "\nThere is no such option. Try again \n\n";
 	}
@@ -170,7 +159,7 @@ void DisplayConsole::printTypeOfFiltering(Stock* stock)
 	std::cout << "\n\t----- Choose type of filtering -----\n";
 	std::cout << "\t1. By category\n";
 	std::cout << "\t2. By supplier\n\n>> ";
-	std::cin >> choiceOfFiltering;
+	choiceOfFiltering = validationInput(1, 2);
 	std::cout << std::endl;
 
 	switch (choiceOfFiltering) {
@@ -243,7 +232,7 @@ int DisplayConsole::getCategory(Stock * stock)
 		std::cout <<"\t" +std:: to_string(i+1) + ". " << stock->getCategoryList()->at(i) << std::endl;
 	}
 	int categoryChoose;
-	std::cin >> categoryChoose;
+	categoryChoose = validationInput(1, 4);
 
 	return categoryChoose;
 }
@@ -255,33 +244,9 @@ int DisplayConsole::getSupplier(Stock* stock)
 		std::cout << "\t" + std::to_string(i + 1) + ". " << stock->getSupplierList()->at(i) << std::endl;
 	}
 	int supplierChoose;
-	std::cin >> supplierChoose;
+	supplierChoose = validationInput(1, 4);
 
 	return supplierChoose;
-}
-
-
-void DisplayConsole::sortInOrder(Stock* stock, int direct)
-{
-	std::map<Product*, int>* magazyn1 = stock->getStorage();
-	std::multimap<std::string, Product*, std::greater<std::string>> magazynek;
-	if (direct == 3) {
-		std::multimap<std::string, Product*, std::greater<std::string>> magazynek;
-	}
-	else if (direct == 4) {
-		std::multimap<std::string, Product*, std::less<std::string>> magazynek;
-	}
-
-	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
-		magazynek.insert({ it->first->getName(),it->first });
-	}
-	int i{ 1 };
-	for (std::multimap<std::string, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
-		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
-			<< "\tPrice: " << it->second->getPrice() << " $" << std::endl << std::endl;
-		i++;
-	}
 }
 
 void DisplayConsole::sortInOrder(Stock* stock, int direct)
@@ -329,11 +294,38 @@ int DisplayConsole::orderConfirmation()
 {
 	int input;
 	std::cout << "Whether your order is correct?" << std::endl;
-	std::cout << "69 - YES" << std::endl;
-	std::cout << "96 - NO" << std::endl;
+	std::cout << "1 - YES" << std::endl;
+	std::cout << "2 - NO" << std::endl;
 	std::cout << ">> ";
-	std::cin >> input;
+	input = validationInput(1, 2);
 
 	return input;
+
+}
+
+int DisplayConsole::validationInput(int start, int stop)
+{
+	std::string output;
+	bool dupy = false;
+
+	do {
+		std::getline(std::cin, output);
+
+		for (int i = 0; i < output.size(); i++) {
+			if (!isdigit(output[i])) {
+				std::cout << "That was no integer! Please enter an integer: ";
+				break;
+			}
+			else if (stoi(output) >= start && stoi(output) <= stop) {
+				return stoi(output);
+			}
+			else if (stoi(output) < start || stoi(output) > stop) {
+				std::cout << "\n--- Wrong choice, try again! ---\n";
+				break;
+			}
+			else
+				dupy = true;
+		}
+	} while (!dupy);
 
 }
