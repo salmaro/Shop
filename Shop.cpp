@@ -20,10 +20,12 @@ int Shop::session() {
 	int finish = 0;
 
 	while (authorisation != 1) {
+		system("cls");
 		konsola.printWelcomeScreen();
 		authorisation = konsola.loginAndPassword(ptr_adminek, ptr_kliencik);
+		Sleep(2000);
+		system("cls");
 	}
-
 
 	if (authorisation == 1) {
 		while (finish != 3) {
@@ -60,6 +62,7 @@ void Shop::payment(Client* client_ptr) {
 	int input;
 	std::cout << "\t\t" << "\033[1;31mYour total cost: $";
 	std::cout << client_ptr->koszyk.getTotalPrice();
+		std::cout << " \033[0m" << std::endl << std::endl;
 	std::cout << "\nPlease choose payment method:\n";
 	std::cout << "1 - PayPal\n";
 	std::cout << "2 - Credit Card\n";

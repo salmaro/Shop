@@ -11,54 +11,50 @@ Product::Product()
 
 }
 
-void Product::setPrice()
-{
+void Product::setPrice() {
+
 	float temp;
 	std::cout << "Enter the price: ";
 	std::cin >> temp;
 	price = temp;
 }
 
-float Product::getPrice()
-{
+float Product::getPrice() {
 	return price;
 }
 
-void Product::setName()
-{
+void Product::setName() {
+
 	std::string temp;
 	std::cout << "Enter product name: ";
 	std::getline(std::cin, temp);
 	name = temp;
 }
 
-std::string Product::getName()
-{
+std::string Product::getName() {
 	return name;
 }
 
-void Product::setCategory()
-{
+void Product::setCategory() {
+
 	std::string temp;
 	std::cout << "Enter product category: ";
 	std::getline(std::cin, temp);
 	category = temp;
 }
 
-std::string Product::getCategory()
-{
+std::string Product::getCategory() {
 	return category;
 }
 
-void Product::setSupplier()
-{
+void Product::setSupplier() {
+
 	std::string temp;
 	std::cout << "Enter product supplier: ";
 	std::getline(std::cin, temp);
 	supplier = temp;
 }
 
-std::string Product::getSupplier()
-{
+std::string Product::getSupplier() {
 	return supplier;
 }

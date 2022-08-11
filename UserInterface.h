@@ -2,7 +2,6 @@
 #include<vector>
 #include<string>
 
-
 class UserInterface
 {
 	/*Produkty beda przechowywane w Stock, ktory jest wektorem 2d ( ID produktu, iloscWskaznikow = iloscProduktow)*/

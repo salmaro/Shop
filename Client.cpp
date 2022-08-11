@@ -1,7 +1,7 @@
 #include "Client.h"
 
-void Client::setPersonalData()
-{
+void Client::setPersonalData() {
+
 	std::cout << "Please enter your name:" << std::endl;
 	std::cin >> this->name;
 	std::cout << "Please enter your surname:" << std::endl;
@@ -12,8 +12,7 @@ void Client::setPersonalData()
 	std::cin >> this->phoneNumber;
 }
 
-void Client::setBillingAddress()
-{
+void Client::setBillingAddress() {
 	//ShippingAddress{"Poland","Warsaw","28608","Powstancow 10/2"};
 
 	std::cout << "Please enter your coutry:" << std::endl;
@@ -27,10 +26,9 @@ void Client::setBillingAddress()
 	
 }
 
-void Client::setShippingAddress(int i)
-{
+void Client::setShippingAddress(int i) {
+
 	if (i == 1) {
-		
 		 shippingAddress.country = billingAddress.country;
 		 shippingAddress.city = billingAddress.city;
 		 shippingAddress.zipCode = billingAddress.zipCode;
@@ -48,13 +46,13 @@ void Client::setShippingAddress(int i)
 	}
 }
 
-struct Client ::BillingAddress Client::getBillingAddress()
-{
+struct Client ::BillingAddress Client::getBillingAddress() {
+
 	return billingAddress;
 }
 
-void Client::displayAddress()
-{
+void Client::displayAddress() {
+
 	std::cout << "\033[1;33mShipping Address: \n"
 		<< shippingAddress.address << std::endl
 		<< shippingAddress.city << std::endl
