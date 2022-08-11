@@ -88,6 +88,7 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 	choice = validationInput(1,3);
 
 	if (choice == 1) {
+		
 		system("cls");
 		printList(stock);
 		std::cout << std::endl;
@@ -99,16 +100,11 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 
 		choice = validationInput(1,4);
 		if (choice == 1) {
-			int produktID;
-			system("cls");
-			printList(stock);
-			std::cout << "\n\tEnter product ID: >> ";
-			produktID = validationInput(1,20);
-
-			client->koszyk.addProduct(produktID, stock);
-			system("Pause");
+			if (selectProduct(stock, client))
+				return 3;
 			system("cls");
 		}
+
 		else if (choice == 2) {
 			system("cls");
 			printTypeOfSorting(stock);
@@ -125,7 +121,8 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 	}
 	else if (choice == 2) {
 		//system("cls");
-		client->koszyk.displayCart(stock);
+		if (client->koszyk.displayCart(stock))
+			return 3; // jezeli displayCart zwroci 1 to zwracam 3 - czyli przerywa petle w session i idzie do check out
 	}
 	else if (choice == 3) {
 		return 3;
@@ -304,10 +301,10 @@ void DisplayConsole::sortPriceDescending(Stock * stock) {
 int DisplayConsole::orderConfirmation() {
 
 	int input;
-	std::cout << "Whether your order is correct?" << std::endl;
-	std::cout << "1 - YES" << std::endl;
-	std::cout << "2 - NO" << std::endl;
-	std::cout << ">> ";
+	std::cout << "\tWhether your order is correct?" << std::endl;
+	std::cout << "\t1 - YES" << std::endl;
+	std::cout << "\t2 - NO" << std::endl;
+	std::cout << "\t>> ";
 	input = validationInput(1, 2);
 
 	return input;
@@ -337,4 +334,24 @@ int DisplayConsole::validationInput(int start, int stop) {
 				dupy = true;
 		}
 	} while (!dupy);
+}
+
+bool DisplayConsole::selectProduct(Stock* stock, Client* client)
+{
+	int helper = 0;
+	do {
+		int produktID;
+		system("cls");
+		printList(stock);
+		std::cout << "\n\tEnter product ID: >> ";
+		produktID = validationInput(1, 20);
+
+		client->koszyk.addProduct(produktID, stock);
+		std::cout << "\t1. Add another product\n\t2. Show cart\n\t3. Back to main menu\n\t>> ";
+		helper = validationInput(1, 3);
+	} while (helper == 1);
+	if (helper == 2)
+		return (client->koszyk.displayCart(stock));
+	else
+		return false;
 }

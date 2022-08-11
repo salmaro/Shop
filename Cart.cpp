@@ -21,7 +21,7 @@ void Cart::addProduct(int productID, Stock* stock) {
 	else {
 		++currentCart[(products + (productID - 1))];
 		stock->subtractQuantity(products + (productID - 1));
-		std::cout << "Add to cart product: " << (products[productID - 1]).getName() << std::endl;
+		std::cout << "\033[1;32m" << "\n\t\tAdd to cart product: " << (products[productID - 1]).getName() << " \033[0m" << std::endl;
 	}
 }
 
@@ -69,8 +69,9 @@ void Cart::changeQuantity(Stock* stock) {
 	this->printCart();
 }
 
-void Cart::displayCart(Stock* stock){
+bool Cart::displayCart(Stock* stock){ // zmienione na bool bo - jezeli true idziemy do checkout jezeli false to idziemy na main menu
 	
+	int val;
 	totalPrice = {};
 	size_t i{ 1 };
 	if (currentCart.empty()) {
@@ -78,16 +79,21 @@ void Cart::displayCart(Stock* stock){
 	}
 	else {
 		std::cout << std::endl;
-	for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
-		std::cout << i <<". Product: " << std::setw(15) << std::left << it->first->getName()
-			<< std::left << std::setw(10) << "Quantity: " << it->second
-			<< "\tPrice: $" << std::setw(15) << std::left << it->first->getPrice()*it->second << std::endl;
-		i++;
+		for (std::map<Product*, int>::iterator it = currentCart.begin(); it != currentCart.end(); it++) {
+			std::cout << i <<". Product: " << std::setw(15) << std::left << it->first->getName()
+				<< std::left << std::setw(10) << "Quantity: " << it->second
+				<< "\tPrice: $" << std::setw(15) << std::left << it->first->getPrice()*it->second << std::endl;
+			i++;
 		}
 	std::cout << "\n\t\t\t\t \033[1;31mTotal Price: $" << this->getTotalPrice() << "\033[0m \n" << std::endl;
 	}
-	system("Pause");
-	system("cls");
+	// ### powrot do menu lub check out
+	std::cout << "\tWould you like to check out?\n\t1. YES\n\t2. NO\n\n\t>> ";
+	val = validationInput(1, 2);
+	if (val == 1)
+		return true;
+	else
+		return false;
 }
 
 std::map<Product*, int> Cart::getCurrentCart() {

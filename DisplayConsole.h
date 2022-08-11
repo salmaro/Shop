@@ -31,5 +31,6 @@ public:
     void sortPriceDescending(Stock* stock);
     int orderConfirmation();
     int validationInput(int start, int stop);
+    bool selectProduct(Stock* stock, Client* client);
 
 };

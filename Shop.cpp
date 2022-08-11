@@ -23,7 +23,7 @@ int Shop::session() {
 		system("cls");
 		konsola.printWelcomeScreen();
 		authorisation = konsola.loginAndPassword(ptr_adminek, ptr_kliencik);
-		Sleep(2000);
+		Sleep(1000);
 		system("cls");
 	}
 
@@ -38,7 +38,7 @@ int Shop::session() {
 		kliencik.setPersonalData();
 		kliencik.setBillingAddress();
 		int input{};
-		std::cout << "\nWhether Billing Adress is the same as Shipping Adress? " << std::endl;
+		std::cout << "\n\tWhether Billing Adress is the same as Shipping Adress? " << std::endl;
 		std::cout << "1 - YES.\n"
 			<< "2 - NO.\n>> ";
 

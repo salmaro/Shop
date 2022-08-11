@@ -14,7 +14,7 @@ public:
     void addProduct(int productID, Stock* stock);
     void removeProduct(Stock* stock);
     void changeQuantity(Stock * stock);
-    void displayCart(Stock* stock);
+    bool displayCart(Stock* stock); // zmienione na bool bo - jezeli true idziemy do checkout jezeli false to idziemy na main menu
     std::map<Product*, int> getCurrentCart();
     void cartOptions(Stock* stock);
     void editCartOptions(Stock* stock);
