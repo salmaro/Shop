@@ -55,11 +55,12 @@ struct Client ::BillingAddress Client::getBillingAddress()
 
 void Client::displayAddress()
 {
-	std::cout << "Shipping Address: \n" 
+	std::cout << "\033[1;33mShipping Address: \n"
 		<< shippingAddress.address << std::endl
-		<< shippingAddress.city << std::endl 
-		<< shippingAddress.country << std::endl 
+		<< shippingAddress.city << std::endl
+		<< shippingAddress.country << std::endl
 		<< shippingAddress.zipCode << std::endl;
+	std::cout << " \033[0m"<< std::endl;
 
 	std::cout << std::endl;
 	std::cout << "Billing Address: \n" 

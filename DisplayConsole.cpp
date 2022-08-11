@@ -40,7 +40,7 @@ int DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 		return 1;
 	}
 	else {
-		std::cout << "\n\t!!! Wrong login or password !!! \nTRY AGAIN\n";
+		std::cout << "\n\t!!! Wrong login or password !!! \n\tTRY AGAIN\n";
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
 		return 0;
@@ -74,27 +74,27 @@ void DisplayConsole::adminPanel() {
 }
 
 int DisplayConsole::userPanel(Client* client, Stock* stock) {
-	std::cout << "\t\t1. Display all product in the shop\n";
-	std::cout << "\t\t2. Display cart\n";
-	std::cout << "\t\t3. Checkout\n\n>> ";
+	std::cout << "\t1. Display all product in the shop\n";
+	std::cout << "\t2. Display cart\n";
+	std::cout << "\t3. Checkout\n\n>> ";
 
 	int choice;
 	choice = validationInput(1,3);
 
 	if (choice == 1) {
-
+		system("cls");
 		printList(stock);
 		std::cout << std::endl;
-		std::cout << "1. Select products\n";
-		std::cout << "2. Sort products\n";
-		std::cout << "3. Filter products\n";
-		std::cout << "4. Display cart\n>> ";
+		std::cout << "\t1. Select products\n";
+		std::cout << "\t2. Sort products\n";
+		std::cout << "\t3. Filter products\n";
+		std::cout << "\t4. Display cart\n>> ";
 		//std::cout << "5. Checkout\n\n>> ";
 
 		choice = validationInput(1,4);
 		if (choice == 1) {
 			int produktID;
-			std::cout << "Enter product ID: " << std::endl;
+			std::cout << "\tEnter product ID >>";
 			produktID = validationInput(1,20);
 
 			client->koszyk.addProduct(produktID, stock);
@@ -109,11 +109,13 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 			printTypeOfFiltering(stock);
 		}
 		else if (choice == 4) {
+			system("cls");
 			client->koszyk.displayCart(stock);
 		}
 
 	}
 	else if (choice == 2) {
+		system("cls");
 		client->koszyk.displayCart(stock);
 	}
 	else if (choice == 3) {

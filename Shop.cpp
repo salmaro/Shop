@@ -58,7 +58,7 @@ int Shop::session() {
 
 void Shop::payment(Client* client_ptr) {
 	int input;
-	std::cout << "Your total price is: ";
+	std::cout << "\t\t" << "\033[1;31mYour total cost: $";
 	std::cout << client_ptr->koszyk.getTotalPrice();
 	std::cout << "\nPlease choose payment method:\n";
 	std::cout << "1 - PayPal\n";
@@ -66,13 +66,15 @@ void Shop::payment(Client* client_ptr) {
 	std::cout << ">> ";
 	std::cin >> input;
 
-	std::cout << "\nYour order is complete. Please wait for an email with payment confirmation.\n";
+	std::cout << "\nYour order is complete. Please wait for an email with payment confirmation.\n\n";
 }
 
 void Shop::summaryOfOrder(Client* client_ptr) {
-	client_ptr->koszyk.printCart();
-	std::cout << "Your total price is: ";
-	std::cout << client_ptr->koszyk.getTotalPrice();
 	std::cout << std::endl;
+	client_ptr->koszyk.printCart();
+	std::cout << "\t\t"<<"\033[1;31mYour total cost: $";
+	std::cout << client_ptr->koszyk.getTotalPrice();
+	std::cout << " \033[0m" << std::endl << std::endl;
 	client_ptr->displayAddress();
+	std::cout << std::endl;
 }
