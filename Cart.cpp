@@ -69,7 +69,7 @@ void Cart::changeQuantity(Stock* stock) {
 	this->printCart();
 }
 
-bool Cart::displayCart(Stock* stock){ // zmienione na bool bo - jezeli true idziemy do checkout jezeli false to idziemy na main menu
+void Cart::displayCart(Stock* stock){ 
 	
 	int val;
 	totalPrice = {};
@@ -87,13 +87,6 @@ bool Cart::displayCart(Stock* stock){ // zmienione na bool bo - jezeli true idzi
 		}
 	std::cout << "\n\t\t\t\t \033[1;31mTotal Price: $" << this->getTotalPrice() << "\033[0m \n" << std::endl;
 	}
-	// ### powrot do menu lub check out
-	std::cout << "\tWould you like to check out?\n\t1. YES\n\t2. NO\n\n\t>> ";
-	val = validationInput(1, 2);
-	if (val == 1)
-		return true;
-	else
-		return false;
 }
 
 std::map<Product*, int> Cart::getCurrentCart() {
@@ -101,9 +94,9 @@ std::map<Product*, int> Cart::getCurrentCart() {
 }
 
 void Cart::cartOptions(Stock* stock) {
-	std::cout << "1. Continue shopping " << std::endl;
-	std::cout << "2. Edit cart " << std::endl;
-	std::cout << "3. Checkout " << std::endl;
+	std::cout << "\t1. Continue shopping " << std::endl;
+	std::cout << "\t2. Edit cart " << std::endl;
+	std::cout << "\t3. Checkout " << std::endl;
 	
 	int userInput{};
 	userInput = validationInput(1,3);
@@ -122,9 +115,9 @@ void Cart::cartOptions(Stock* stock) {
 
 void Cart::editCartOptions(Stock* stock) {
 
-	std::cout << "1. Remove product " << std::endl;
-	std::cout << "2. Change quantity " << std::endl;
-	std::cout << "3. Remove all product " << std::endl;
+	std::cout << "\t1. Remove product " << std::endl;
+	std::cout << "\t2. Change quantity " << std::endl;
+	std::cout << "\t3. Remove all product " << std::endl;
 
 	int userInput;
 	userInput = validationInput(1, 3);
@@ -159,10 +152,10 @@ int Cart::checkoutCart(Stock* stock) {
 
 	displayCart(stock);
 	int input;
-	std::cout << "Whether your order is correct?" << std::endl;
-	std::cout << "1 - YES" << std::endl;
-	std::cout << "2 - NO" << std::endl;
-	std::cout << ">> ";
+	std::cout << "\tWhether your order is correct?" << std::endl;
+	std::cout << "\t1. YES" << std::endl;
+	std::cout << "\t2. NO" << std::endl;
+	std::cout << "\t>> ";
 	input = validationInput(1, 2);
 	
 	return input;

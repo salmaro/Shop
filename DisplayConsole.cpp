@@ -16,7 +16,7 @@ void DisplayConsole::printList(Stock* stock) {
 }
 
 void DisplayConsole::printWelcomeScreen() {
-
+	std::cout << std::endl;
 	std::cout << "\t+--------------------------------------------+\n";
 	std::cout << "\t|                                            |\n";
 	std::cout << "\t|                 SHOPePePePe                |\n";
@@ -95,12 +95,13 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 		std::cout << "\t1. Select products\n";
 		std::cout << "\t2. Sort products\n";
 		std::cout << "\t3. Filter products\n";
-		std::cout << "\t4. Display cart\n\t>> ";
-		//std::cout << "5. Checkout\n\n>> ";
+		std::cout << "\t4. Display cart\n ";
+		std::cout << "\t5. Checkout\n\n\t>> ";
 
 		choice = validationInput(1,4);
 		if (choice == 1) {
-			if (selectProduct(stock, client))
+			selectProduct(stock, client);
+			if (checkOutPanel())
 				return 3;
 			system("cls");
 		}
@@ -117,11 +118,16 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 			system("cls");
 			client->koszyk.displayCart(stock);
 		}
+		else if (choice == 5) {
+			system("cls");
+			if (checkOutPanel())
+				return 3;
+		}
 
 	}
 	else if (choice == 2) {
-		//system("cls");
-		if (client->koszyk.displayCart(stock))
+		client->koszyk.displayCart(stock);
+		if (checkOutPanel())
 			return 3; // jezeli displayCart zwroci 1 to zwracam 3 - czyli przerywa petle w session i idzie do check out
 	}
 	else if (choice == 3) {
@@ -302,11 +308,10 @@ int DisplayConsole::orderConfirmation() {
 
 	int input;
 	std::cout << "\tWhether your order is correct?" << std::endl;
-	std::cout << "\t1 - YES" << std::endl;
-	std::cout << "\t2 - NO" << std::endl;
-	std::cout << "\t>> ";
+	std::cout << "\t1. YES" << std::endl;
+	std::cout << "\t2. NO" << std::endl;
+	std::cout << "\n\n\t>> ";
 	input = validationInput(1, 2);
-
 	return input;
 }
 
@@ -320,14 +325,14 @@ int DisplayConsole::validationInput(int start, int stop) {
 
 		for (int i = 0; i < output.size(); i++) {
 			if (!isdigit(output[i])) {
-				std::cout << "That was no integer! Please enter an integer: ";
+				std::cout << "\t--- That was no integer! ---\n\t Please enter an integer: ";
 				break;
 			}
 			else if (stoi(output) >= start && stoi(output) <= stop) {
 				return stoi(output);
 			}
 			else if (stoi(output) < start || stoi(output) > stop) {
-				std::cout << "\n--- Wrong choice, try again! ---\n";
+				std::cout << "\n\t--- Wrong choice, try again! ---\n\t>> ";
 				break;
 			}
 			else
@@ -336,7 +341,7 @@ int DisplayConsole::validationInput(int start, int stop) {
 	} while (!dupy);
 }
 
-bool DisplayConsole::selectProduct(Stock* stock, Client* client)
+void DisplayConsole::selectProduct(Stock* stock, Client* client)
 {
 	int helper = 0;
 	do {
@@ -347,11 +352,20 @@ bool DisplayConsole::selectProduct(Stock* stock, Client* client)
 		produktID = validationInput(1, 20);
 
 		client->koszyk.addProduct(produktID, stock);
-		std::cout << "\t1. Add another product\n\t2. Show cart\n\t3. Back to main menu\n\t>> ";
+		std::cout << "\n\t1. Add another product\n\t2. Show cart\n\t3. Back to main menu\n\n\t>> ";
 		helper = validationInput(1, 3);
 	} while (helper == 1);
 	if (helper == 2)
-		return (client->koszyk.displayCart(stock));
+		client->koszyk.displayCart(stock);
+}
+
+bool DisplayConsole::checkOutPanel()
+{
+	int val{};
+	std::cout << "\tWould you like to check out?\n\t1. YES\n\t2. NO\n\n\t>> ";
+	val = validationInput(1, 2);
+	if (val == 1)
+		return true;
 	else
 		return false;
 }
