@@ -24,27 +24,56 @@ void DisplayConsole::printWelcomeScreen() {
 
 int DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 	std::string userInputLogin, userInputPassword;
+	std::string password{""};
 
 	std::cout << "\n\tEnter login >> ";
 	std::cin >> userInputLogin;
 
 	std::cout << "\n\tEnter password >> ";
-	std::cin >> userInputPassword;
-	std::cout << std::endl;
+	maskingPassword(password);
+	std::cout << std::endl << std::endl;
 
-
-	if (userInputLogin == admin->getLogin() && userInputPassword == admin->getPassword()) {
+	if (userInputLogin == admin->getLogin() && password == admin->getPassword()) {
 		return 2;
 	}
-	else if (userInputLogin == client->getLogin() && userInputPassword == client->getPassword()) {
+	else if (userInputLogin == client->getLogin() && password == client->getPassword()) {
 		return 1;
 	}
 	else {
-		std::cout << "\n\t!!! Wrong login or password !!! \nTRY AGAIN\n";
+		std::cout << "\n\t!!! Wrong login or password !!!\n";
+		std::cout << "\n\t\tTRY AGAIN\n\n";
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
 		return 0;
 	}	
+}
+
+void DisplayConsole::maskingPassword(std::string &codeWord)
+{
+	char ch;
+
+	while (1)	
+	{
+		ch = _getch();
+		if (ch == 13)
+		{
+			break;		
+		}
+		else if (ch == 8)
+		{
+			codeWord.pop_back();
+			printf("\b \b");
+		}
+		else if (ch == 32 || ch == 9)
+		{
+			continue;		
+		}
+		else
+		{
+			codeWord.push_back(ch);
+			printf("*");
+		}
+	}
 }
 
 void DisplayConsole::adminPanel() {

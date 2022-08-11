@@ -75,4 +75,33 @@ void Shop::summaryOfOrder(Client* client_ptr) {
 	std::cout << client_ptr->koszyk.getTotalPrice();
 	std::cout << std::endl;
 	client_ptr->displayAddress();
+
+	std::fstream myFile;
+
+	myFile.open("podsumowanie.csv", std::ios::out);
+	
+	for (auto it = client_ptr->koszyk.getCurrentCart().begin(); it != client_ptr->koszyk.getCurrentCart().end(); it++) {
+		/*std::cin >> it->first->getName()
+			>> it->first->getCategory()
+			>> it->first->getSupplier()
+			>> std::to_string(it->first->getPrice());*/
+
+		myFile << it->first->getName() << ", "
+			<< it->first->getCategory() << ", "
+			<< it->first->getSupplier() << ", "
+			<< std::to_string(it->first->getPrice()) << "\n ";
+	}
+	myFile.close();
+
+	/*std::cout << "Do you want to finish shopping?\n\n";
+	std::cout << "\t1. YES\n";
+	std::cout << "\t2. NO\n";
+
+	int finishShopping{};
+	std::cin >> finishShopping;
+
+	if (finishShopping == 1) {
+		std::cout << "BYE BYE!\n\n";
+		exit(0);
+	}*/
 }

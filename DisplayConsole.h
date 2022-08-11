@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <string>
 #include "Stock.h"
+#include <conio.h>
 #include "Client.h"
 #include "Admin.h"
 
@@ -18,6 +19,7 @@ public:
     void printList(Stock* stock);
     void printWelcomeScreen();
     int loginAndPassword(Admin* admin, Client* client);
+    void maskingPassword(std::string &codeWord);
     void adminPanel();
     int userPanel(Client* client, Stock *stock);
     void printTypeOfSorting(Stock* stock);
@@ -31,5 +33,6 @@ public:
     void sortPriceDescending(Stock* stock);
     int orderConfirmation();
     int validationInput(int start, int stop);
+    
 
 };

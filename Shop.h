@@ -1,6 +1,7 @@
 #pragma once
 #include "DisplayConsole.h"
 #include <string>
+#include <fstream>
 
 
 class Shop
