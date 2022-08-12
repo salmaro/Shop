@@ -19,12 +19,13 @@ int Shop::session() {
 	int authorisation = 0;
 	int finish = 0;
 
-	while (authorisation != 1) {
+	while (authorisation != 1 && authorisation !=2) {
 		system("cls");
 		konsola.printWelcomeScreen();
 		authorisation = konsola.loginAndPassword(ptr_adminek, ptr_kliencik);
-		Sleep(1000);
+		Sleep(2000);
 		system("cls");
+
 	}
 
 	if (authorisation == 1) {
@@ -33,6 +34,29 @@ int Shop::session() {
 			finish = konsola.userPanel(ptr_kliencik, stock);
 		}
 	}
+	else if (authorisation == 2) {
+		konsola.adminPanel();
+		int input = konsola.validationInput(1,4);
+		if (input == 1) {
+			//adminek.addProductToStock();
+		}
+		else if (input == 2) {
+			//adminek.removeProductFromStock(stock);
+		}
+		else if (input == 3) {
+			adminek.resetPassword(ptr_kliencik);
+		}
+		else {
+			while (authorisation != 1 && authorisation != 2) {
+				system("cls");
+				konsola.printWelcomeScreen();
+				authorisation = konsola.loginAndPassword(ptr_adminek, ptr_kliencik);
+				Sleep(2000);
+				system("cls");
+			}
+		}
+	}
+
 	system("cls");
 	if (kliencik.koszyk.checkoutCart(stock) == 1) {
 		kliencik.setPersonalData();
@@ -76,7 +100,7 @@ void Shop::summaryOfOrder(Client &client) {
 	std::cout << "\t\t"<<"\033[1;31mYour total cost: $";
 	std::cout << client.koszyk.getTotalPrice();
 	std::cout << " \033[0m" << std::endl << std::endl;
-	client_ptr->displayAddress();
+	client.displayAddress();
 	std::cout << std::endl;
 	client.displayAddress();
 
@@ -87,11 +111,7 @@ void Shop::summaryOfOrder(Client &client) {
 	if (!myFile.good()) {
 		std::cout << "Jest kiepsko.. \n";
 	}
-	//for (auto it = client.koszyk.getCurrentCart().begin(); it != client.koszyk.getCurrentCart().end(); it++) {
-	//	/*std::cin >> it->first->getName()
-	//		>> it->first->getCategory()
-	//		>> it->first->getSupplier()
-	//		>> std::to_string(it->first->getPrice());*/
+
 
 	for (const auto& i : client.koszyk.getCurrentCart()) {
 		myFile << i.first->getName() << ", "

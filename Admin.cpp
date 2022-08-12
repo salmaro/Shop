@@ -1,13 +1,7 @@
 #include "Admin.h"
 
 
-void Admin::addStock(Stock*) {
 
-}
-
-void Admin::removeStock(Stock*) {
-
-}
 
 void Admin::resetPassword(Client* client) {
 	std::string clientPassword = client->getPassword();
@@ -16,4 +10,8 @@ void Admin::resetPassword(Client* client) {
 	std::cin >> newPassword;
 	client->setPassword(newPassword);
 	std::cout << "Your password has been changed." << std::endl;
+}
+
+void Admin::removeProductFromStock(Stock* stock)
+{
 }

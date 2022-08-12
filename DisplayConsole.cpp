@@ -9,7 +9,7 @@ void DisplayConsole::printList(Stock* stock) {
 	for (std::map<Product*, int>::iterator it = stock->getStorage()->begin(); it != stock->getStorage()->end(); it++) {
 		std::cout<<std::setw(4)<<std::left << "\t" << std::setw(4) << std::left << std::to_string(i) + ". "
 			<< "Product: " << std::setw(15) << std::left << it->first->getName()
-			<< std::left << std::setw(10) << "Magazine: " << it->second
+			<< std::left << std::setw(10) << "Availability: " << it->second
 			<< "\tPrice: $" << it->first->getPrice() << std::endl;
 		i++;
 	}
@@ -86,21 +86,8 @@ void DisplayConsole::adminPanel() {
 	std::cout << "\t\t1.Add product to stock\n";
 	std::cout << "\t\t2.Remove product from stock\n";
 	std::cout << "\t\t3.Reset password\n\n";
+	std::cout << "\t\t4.Log out\n\n";
 
-	adminChoice = validationInput(1,3);
-	std::cout << std::endl;
-
-	switch (adminChoice) {
-	case 1:
-		//metoda ktora bedzie dodawac produkty do klasy Stack -->stock
-		break;
-	case 2:
-		//metoda ktora bedzie dodawac produkty do klasy Stack -->stock
-		break;
-	case 3:
-		//resetPassword(Client* client);
-		break;
-	}
 }
 
 int DisplayConsole::userPanel(Client* client, Stock* stock) {
@@ -124,11 +111,10 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 		std::cout << "\t4. Display cart\n ";
 		std::cout << "\t5. Checkout\n\n\t>> ";
 
-		choice = validationInput(1,4);
+		choice = validationInput(1,5);
 		if (choice == 1) {
+
 			selectProduct(stock, client);
-			if (checkOutPanel())
-				return 3;
 			system("cls");
 		}
 
@@ -227,7 +213,7 @@ void DisplayConsole::sortPriceAscending(Stock* stock) {
 	}
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
+			<< std::left << std::setw(10) << "Availability: " << (*magazyn1)[it->second] << std::setw(15) << std::right
 			<< "\tPrice: $" << it->second->getPrice() << std::endl << std::endl;
 		i++;
 	}
@@ -241,7 +227,7 @@ void DisplayConsole::filterByCategory(Stock* stock, int category) {
 			if (it->first->getCategory() == stock->getCategoryList()->at(category-1)) {
 				std::cout << std::setw(4) << std::left << "\t" << std::setw(4) << std::left << std::to_string(s) + ". "
 					<< "Product: " << std::setw(15) << std::left << it->first->getName()
-					<< std::left  << "Magazine: " << it->second
+					<< std::left  << "Availability: " << it->second
 					<< std::left  << "\tPrice: $" << it->first->getPrice() << std::endl;
 				s++;
 			}	
@@ -257,7 +243,7 @@ void DisplayConsole::filterBySupplier(Stock* stock, int supplier) {
 		if (it->first->getCategory() == stock->getCategoryList()->at(supplier - 1)) {
 			std::cout << std::setw(4) << std::left << "\t" << std::setw(4) << std::left << std::to_string(s) + ". "
 				<< "Product: " << std::setw(15) << std::left << it->first->getName()
-				<< std::left << "Magazine: " << it->second
+				<< std::left << "Availability: " << it->second
 				<< std::left << "\tPrice: $" << it->first->getPrice() << std::endl;
 			s++;
 		}
@@ -307,7 +293,7 @@ void DisplayConsole::sortInOrder(Stock* stock, int direct) {
 	int i{ 1 };
 	for (std::multimap<std::string, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
+			<< std::left << std::setw(10) << "Availability: " << (*magazyn1)[it->second] << std::setw(15) << std::right
 			<< "\tPrice: $" << it->second->getPrice() << std::endl << std::endl;
 		i++;
 	}
@@ -325,7 +311,7 @@ void DisplayConsole::sortPriceDescending(Stock * stock) {
 
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
-			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
+			<< std::left << std::setw(10) << "Availability: " << (*magazyn1)[it->second] << std::setw(15) << std::right
 			<< "\tPrice: $" << it->second->getPrice() << std::endl << std::endl;
 		i++;
 	}
@@ -382,8 +368,10 @@ void DisplayConsole::selectProduct(Stock* stock, Client* client)
 		std::cout << "\n\t1. Add another product\n\t2. Show cart\n\t3. Back to main menu\n\n\t>> ";
 		helper = validationInput(1, 3);
 	} while (helper == 1);
-	if (helper == 2)
+	if (helper == 2) {
 		client->koszyk.displayCart(stock);
+		system("pause");
+	}
 }
 
 bool DisplayConsole::checkOutPanel()

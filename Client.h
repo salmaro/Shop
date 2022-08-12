@@ -36,7 +36,6 @@ public:
     void setShippingAddress(int i);
     struct BillingAddress getBillingAddress();
     void displayAddress();
-    ~Client();
 };
 
 
