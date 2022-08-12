@@ -3,7 +3,6 @@
 
 Stock::Stock() {
 
-
 	products_ptr = new Product[20];
 
 	Product sekator(30.85, "Sekator", "GARDEN", "Sharp");
@@ -82,46 +81,31 @@ Stock::Stock() {
 	supplier = { "Bosch" , "Sharp", "LG", "Samsung" };
 }
 
-Stock::~Stock()
-{
-
+Stock::~Stock() {
 	delete products_ptr;
-
 }
 
-std::map <Product*, int >* Stock::getStorage()
-{
+std::map <Product*, int >* Stock::getStorage() {
 	return &storage;
 }
 
 //std::vector<Product*>* Stock::getProductID()
-Product* Stock::getProductID()
-{
+Product* Stock::getProductID() {
 	return products_ptr;
 }
 
-void Stock::subtractQuantity(Product* insertProduct)
-{
+void Stock::subtractQuantity(Product* insertProduct) {
 	storage[insertProduct]--;
-	
 }
 
-void Stock::addQuantity(Product* insertProduct, int value)
-{
+void Stock::addQuantity(Product* insertProduct, int value) {
 	storage[insertProduct]+=value;
 }
 
-std::vector<std::string>* Stock::getCategoryList()
-{
+std::vector<std::string>* Stock::getCategoryList() {
 	return &category;
 }
 
-std::vector<std::string>* Stock::getSupplierList()
-{
+std::vector<std::string>* Stock::getSupplierList() {
 	return &supplier;
 }
-
-
-
-
-

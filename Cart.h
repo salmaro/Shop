@@ -4,8 +4,6 @@
 #include "Stock.h"
 
 
-
-
 class Cart
 {
 private:

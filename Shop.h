@@ -1,6 +1,7 @@
 #pragma once
 #include "DisplayConsole.h"
 #include <string>
+#include<windows.h>
 #include <fstream>
 
 

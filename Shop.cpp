@@ -20,10 +20,12 @@ int Shop::session() {
 	int finish = 0;
 
 	while (authorisation != 1) {
+		system("cls");
 		konsola.printWelcomeScreen();
 		authorisation = konsola.loginAndPassword(ptr_adminek, ptr_kliencik);
+		Sleep(1000);
+		system("cls");
 	}
-
 
 	if (authorisation == 1) {
 		while (finish != 3) {
@@ -31,18 +33,17 @@ int Shop::session() {
 			finish = konsola.userPanel(ptr_kliencik, stock);
 		}
 	}
-	
+	system("cls");
 	if (kliencik.koszyk.checkoutCart(stock) == 1) {
 		kliencik.setPersonalData();
 		kliencik.setBillingAddress();
 		int input{};
-		std::cout << "\nWhether Billing Adress is the same as Shipping Adress? " << std::endl;
-		std::cout << "1 - YES.\n"
-			<< "2 - NO.\n>> ";
-
+		std::cout << "\n\tWhether Billing Adress is the same as Shipping Adress? " << std::endl;
+		std::cout << "\t1. YES\n\t2. NO\n\t>> ";
 		std::cin >> input;
-		 
+		system("cls");
 		kliencik.setShippingAddress(input);
+		system("cls");
 		kliencik.displayAddress();
 		payment(ptr_kliencik);
 		summaryOfOrder(kliencik);
@@ -58,21 +59,24 @@ int Shop::session() {
 
 void Shop::payment(Client* client_ptr) {
 	int input;
-	std::cout << "Your total price is: ";
+	std::cout << "\t\t" << "\033[1;31mYour total cost: $";
 	std::cout << client_ptr->koszyk.getTotalPrice();
-	std::cout << "\nPlease choose payment method:\n";
-	std::cout << "1 - PayPal\n";
-	std::cout << "2 - Credit Card\n";
-	std::cout << ">> ";
+		std::cout << " \033[0m" << std::endl << std::endl;
+	std::cout << "\n\tPlease choose payment method:\n";
+	std::cout << "\t1. PayPal\n";
+	std::cout << "\t2. Credit Card\n";
+	std::cout << "\t>> ";
 	std::cin >> input;
 
-	std::cout << "\nYour order is complete. Please wait for an email with payment confirmation.\n";
+	std::cout << "\n \033[1; 31mYour order is complete. Please wait for an email with payment confirmation.\n\n  \033[0m";
 }
 
 void Shop::summaryOfOrder(Client &client) {
 	client.koszyk.printCart();
-	std::cout << "Your total price is: ";
+	std::cout << "\t\t"<<"\033[1;31mYour total cost: $";
 	std::cout << client.koszyk.getTotalPrice();
+	std::cout << " \033[0m" << std::endl << std::endl;
+	client_ptr->displayAddress();
 	std::cout << std::endl;
 	client.displayAddress();
 

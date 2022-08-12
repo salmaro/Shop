@@ -1,20 +1,22 @@
 #include "DisplayConsole.h"
 
 
-void DisplayConsole::printList(Stock* stock)
-{	
+void DisplayConsole::printList(Stock* stock) {
+
 	int i{ 1 };
+	std::cout << "\n\t\t\t\tSHOPePePePe\n\n";
+
 	for (std::map<Product*, int>::iterator it = stock->getStorage()->begin(); it != stock->getStorage()->end(); it++) {
 		std::cout<<std::setw(4)<<std::left << "\t" << std::setw(4) << std::left << std::to_string(i) + ". "
 			<< "Product: " << std::setw(15) << std::left << it->first->getName()
 			<< std::left << std::setw(10) << "Magazine: " << it->second
-			<< "\tPrice: " << " $" << it->first->getPrice()  << std::endl;
+			<< "\tPrice: $" << it->first->getPrice() << std::endl;
 		i++;
 	}
 }
 
 void DisplayConsole::printWelcomeScreen() {
-
+	std::cout << std::endl;
 	std::cout << "\t+--------------------------------------------+\n";
 	std::cout << "\t|                                            |\n";
 	std::cout << "\t|                 SHOPePePePe                |\n";
@@ -40,8 +42,7 @@ int DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 		return 1;
 	}
 	else {
-		std::cout << "\n\t!!! Wrong login or password !!!\n";
-		std::cout << "\n\t\tTRY AGAIN\n\n";
+		std::cout << "\n\t\t" << "\033[1;31m!!! Wrong login or password !!!\033[0m" << "\n\t\t\tTRY AGAIN\n";
 		std::cin.clear();
 		std::cin.ignore(100, '\n');
 		return 0;
@@ -103,32 +104,34 @@ void DisplayConsole::adminPanel() {
 }
 
 int DisplayConsole::userPanel(Client* client, Stock* stock) {
-	std::cout << "\t\t1. Display all product in the shop\n";
-	std::cout << "\t\t2. Display cart\n";
-	std::cout << "\t\t3. Checkout\n\n>> ";
+
+	std::cout << "\n\tWhat would you like to do?\n\n";
+	std::cout << "\t1. Display all product in the shop\n";
+	std::cout << "\t2. Display cart\n";
+	std::cout << "\t3. Checkout\n\n\t>> ";
 
 	int choice;
 	choice = validationInput(1,3);
 
 	if (choice == 1) {
-
+		
+		system("cls");
 		printList(stock);
 		std::cout << std::endl;
-		std::cout << "1. Select products\n";
-		std::cout << "2. Sort products\n";
-		std::cout << "3. Filter products\n";
-		std::cout << "4. Display cart\n>> ";
-		//std::cout << "5. Checkout\n\n>> ";
+		std::cout << "\t1. Select products\n";
+		std::cout << "\t2. Sort products\n";
+		std::cout << "\t3. Filter products\n";
+		std::cout << "\t4. Display cart\n ";
+		std::cout << "\t5. Checkout\n\n\t>> ";
 
 		choice = validationInput(1,4);
 		if (choice == 1) {
-			int produktID;
-			std::cout << "Enter product ID: " << std::endl;
-			produktID = validationInput(1,20);
-
-			client->koszyk.addProduct(produktID, stock);
-			system("Pause");
+			selectProduct(stock, client);
+			if (checkOutPanel())
+				return 3;
+			system("cls");
 		}
+
 		else if (choice == 2) {
 			system("cls");
 			printTypeOfSorting(stock);
@@ -138,12 +141,20 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 			printTypeOfFiltering(stock);
 		}
 		else if (choice == 4) {
+			system("cls");
 			client->koszyk.displayCart(stock);
+		}
+		else if (choice == 5) {
+			system("cls");
+			if (checkOutPanel())
+				return 3;
 		}
 
 	}
 	else if (choice == 2) {
 		client->koszyk.displayCart(stock);
+		if (checkOutPanel())
+			return 3; // jezeli displayCart zwroci 1 to zwracam 3 - czyli przerywa petle w session i idzie do check out
 	}
 	else if (choice == 3) {
 		return 3;
@@ -158,7 +169,7 @@ void DisplayConsole::printTypeOfSorting(Stock* stock) {
 	std::cout << "\t1. By price  descending\n";
 	std::cout << "\t2. By price  ascending\n";
 	std::cout << "\t3. By name  A - Z\n";
-	std::cout << "\t4. By name  Z - A\n\n>> ";
+	std::cout << "\t4. By name  Z - A\n\n\t>> ";
 	
 	choiceOfSorting = validationInput(1, 4);
 	std::cout << std::endl;
@@ -180,8 +191,8 @@ void DisplayConsole::printTypeOfSorting(Stock* stock) {
 	}
 }
 
-void DisplayConsole::printTypeOfFiltering(Stock* stock)
-{
+void DisplayConsole::printTypeOfFiltering(Stock* stock) {
+
 	int choiceOfFiltering;
 	int supplier{};
 	int category{};
@@ -205,8 +216,8 @@ void DisplayConsole::printTypeOfFiltering(Stock* stock)
 	}
 }
 
-void DisplayConsole::sortPriceAscending(Stock* stock)
-{
+void DisplayConsole::sortPriceAscending(Stock* stock) {
+
 	int i = 1;
 	std::map<Product*, int> *magazyn1 = stock->getStorage();
 	std::multimap<float, Product*, std::less<float>> magazynek;
@@ -217,13 +228,13 @@ void DisplayConsole::sortPriceAscending(Stock* stock)
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
 			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
-			<< "\tPrice: " << " $" << it->second->getPrice()  << std::endl << std::endl;
+			<< "\tPrice: $" << it->second->getPrice() << std::endl << std::endl;
 		i++;
 	}
 }
 
-void DisplayConsole::filterByCategory(Stock* stock, int category)
-{
+void DisplayConsole::filterByCategory(Stock* stock, int category) {
+
 	std::map<Product*, int>* magazyn1 = stock->getStorage();
 		int s = 1;
 		for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
@@ -231,15 +242,15 @@ void DisplayConsole::filterByCategory(Stock* stock, int category)
 				std::cout << std::setw(4) << std::left << "\t" << std::setw(4) << std::left << std::to_string(s) + ". "
 					<< "Product: " << std::setw(15) << std::left << it->first->getName()
 					<< std::left  << "Magazine: " << it->second
-					<< std::left  << "\tPrice: " << " $" << it->first->getPrice()  << std::endl;
+					<< std::left  << "\tPrice: $" << it->first->getPrice() << std::endl;
 				s++;
 			}	
 		}
 		std::cout << std::endl;
 }
 
-void DisplayConsole::filterBySupplier(Stock* stock, int supplier)
-{
+void DisplayConsole::filterBySupplier(Stock* stock, int supplier) {
+
 	std::map<Product*, int>* magazyn1 = stock->getStorage();
 	int s = 1;
 	for (std::map<Product*, int>::iterator it = magazyn1->begin(); it != magazyn1->end(); it++) {
@@ -247,15 +258,15 @@ void DisplayConsole::filterBySupplier(Stock* stock, int supplier)
 			std::cout << std::setw(4) << std::left << "\t" << std::setw(4) << std::left << std::to_string(s) + ". "
 				<< "Product: " << std::setw(15) << std::left << it->first->getName()
 				<< std::left << "Magazine: " << it->second
-				<< std::left << "\tPrice: " << " $" << it->first->getPrice()  << std::endl;
+				<< std::left << "\tPrice: $" << it->first->getPrice() << std::endl;
 			s++;
 		}
 	}
 	std::cout<< std::endl;
 }
 
-int DisplayConsole::getCategory(Stock * stock)
-{
+int DisplayConsole::getCategory(Stock * stock) {
+
 	std::cout << "--- Choose category --- \n\n";
 
 	for (size_t i{ 0 }; i < stock->getCategoryList()->size(); i++) {
@@ -279,8 +290,8 @@ int DisplayConsole::getSupplier(Stock* stock)
 	return supplierChoose;
 }
 
-void DisplayConsole::sortInOrder(Stock* stock, int direct)
-{
+void DisplayConsole::sortInOrder(Stock* stock, int direct) {
+
 	std::map<Product*, int>* magazyn1 = stock->getStorage();
 	std::multimap<std::string, Product*, std::greater<std::string>> magazynek;
 	if (direct == 3) {
@@ -297,13 +308,13 @@ void DisplayConsole::sortInOrder(Stock* stock, int direct)
 	for (std::multimap<std::string, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
 			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
-			<< "\tPrice: " << " $" << it->second->getPrice()  << std::endl << std::endl;
+			<< "\tPrice: $" << it->second->getPrice() << std::endl << std::endl;
 		i++;
 	}
 }
 
-void DisplayConsole::sortPriceDescending(Stock * stock)
-{
+void DisplayConsole::sortPriceDescending(Stock * stock) {
+
 	int i = 1;
 	std::map<Product*, int>* magazyn1 = stock->getStorage();
 	std::multimap<float, Product*, std::greater<float>> magazynek;
@@ -315,26 +326,24 @@ void DisplayConsole::sortPriceDescending(Stock * stock)
 	for (std::multimap<float, Product*>::iterator it = magazynek.begin(); it != magazynek.end(); it++) {
 		std::cout << "\t" << std::setw(4) << std::left << std::to_string(i) + ". " << std::left << "Product: " << std::setw(18) << std::left << it->second->getName()
 			<< std::left << std::setw(10) << "Magazine: " << (*magazyn1)[it->second] << std::setw(15) << std::right
-			<< "\tPrice: " << " $" << it->second->getPrice()  << std::endl << std::endl;
+			<< "\tPrice: $" << it->second->getPrice() << std::endl << std::endl;
 		i++;
 	}
 }
 
-int DisplayConsole::orderConfirmation()
-{
+int DisplayConsole::orderConfirmation() {
+
 	int input;
-	std::cout << "Whether your order is correct?" << std::endl;
-	std::cout << "1 - YES" << std::endl;
-	std::cout << "2 - NO" << std::endl;
-	std::cout << ">> ";
+	std::cout << "\tWhether your order is correct?" << std::endl;
+	std::cout << "\t1. YES" << std::endl;
+	std::cout << "\t2. NO" << std::endl;
+	std::cout << "\n\n\t>> ";
 	input = validationInput(1, 2);
-
 	return input;
-
 }
 
-int DisplayConsole::validationInput(int start, int stop)
-{
+int DisplayConsole::validationInput(int start, int stop) {
+
 	std::string output;
 	bool dupy = false;
 
@@ -343,19 +352,47 @@ int DisplayConsole::validationInput(int start, int stop)
 
 		for (int i = 0; i < output.size(); i++) {
 			if (!isdigit(output[i])) {
-				std::cout << "That was no integer! Please enter an integer: ";
+				std::cout << "\t--- That was no integer! ---\n\t Please enter an integer: ";
 				break;
 			}
 			else if (stoi(output) >= start && stoi(output) <= stop) {
 				return stoi(output);
 			}
 			else if (stoi(output) < start || stoi(output) > stop) {
-				std::cout << "\n--- Wrong choice, try again! ---\n";
+				std::cout << "\n\t--- Wrong choice, try again! ---\n\t>> ";
 				break;
 			}
 			else
 				dupy = true;
 		}
 	} while (!dupy);
+}
 
+void DisplayConsole::selectProduct(Stock* stock, Client* client)
+{
+	int helper = 0;
+	do {
+		int produktID;
+		system("cls");
+		printList(stock);
+		std::cout << "\n\tEnter product ID: >> ";
+		produktID = validationInput(1, 20);
+
+		client->koszyk.addProduct(produktID, stock);
+		std::cout << "\n\t1. Add another product\n\t2. Show cart\n\t3. Back to main menu\n\n\t>> ";
+		helper = validationInput(1, 3);
+	} while (helper == 1);
+	if (helper == 2)
+		client->koszyk.displayCart(stock);
+}
+
+bool DisplayConsole::checkOutPanel()
+{
+	int val{};
+	std::cout << "\tWould you like to check out?\n\t1. YES\n\t2. NO\n\n\t>> ";
+	val = validationInput(1, 2);
+	if (val == 1)
+		return true;
+	else
+		return false;
 }
