@@ -35,7 +35,7 @@ int DisplayConsole::loginAndPassword(Admin* admin, Client* client) {
 	std::cout << std::endl;
 
 
-	if (userInputLogin == admin->getLogin() && userInputPassword == admin->getPassword()) {
+	if (userInputLogin == admin->getLogin() && userInputPassword == admin->getPassword()) { // wywolujemy metode getLogin obiektu klasy Admin na ktory wkazuje wskaznik admin
 		std::cout << "\tNice to see you again " << (*admin).getLogin() << "\n\tLet's start!";
 		return 2;
 	}
@@ -98,7 +98,7 @@ int DisplayConsole::userPanel(Client* client, Stock* stock) {
 		std::cout << "\t4. Display cart\n ";
 		std::cout << "\t5. Checkout\n\n\t>> ";
 
-		choice = validationInput(1,4);
+		choice = validationInput(1,5);
 		if (choice == 1) {
 			selectProduct(stock, client);
 			if (checkOutPanel())

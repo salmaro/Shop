@@ -4,8 +4,7 @@
 Stock::Stock() {
 
 	products_ptr = new Product[20];
-
-	Product sekator(30.85, "Sekator", "GARDEN", "Sharp");
+	Product sekator (30.85, "Sekator", "GARDEN", "Sharp");
 	Product kosiarka(1200.50, "Kosiarka", "GARDEN", "Bosch");
 	Product myjka(700.75, "Myjka", "GARDEN", "Bosch");
 	Product lopata(40.34, "Lopata", "GARDEN", "Bosch");
@@ -29,6 +28,7 @@ Stock::Stock() {
 	Product puzzle(29.99, "Puzzle", "TOYS", "Bosch");
 	Product maskotka(99.99, "Maskotka", "TOYS", "Sharp");
 
+	
 	products_ptr[0] = sekator;
 	products_ptr[1] = kosiarka;
 	products_ptr[2] = myjka;
