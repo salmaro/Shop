@@ -9,8 +9,8 @@ int Shop::session() {
 	adminek.setPassword("admin123!");
 	Client kliencik;
 
-	kliencik.setLogin("1");
-	kliencik.setPassword("1");
+	kliencik.setLogin("kociaczek");
+	kliencik.setPassword("kociaczek");
 
 	Admin* ptr_adminek{ &adminek };
 	Client* ptr_kliencik{ &kliencik };
@@ -45,7 +45,7 @@ int Shop::session() {
 		kliencik.setShippingAddress(input);
 		kliencik.displayAddress();
 		payment(ptr_kliencik);
-		summaryOfOrder(ptr_kliencik);
+		summaryOfOrder(kliencik);
 
 		system("pause");
 		return 0;
@@ -69,28 +69,34 @@ void Shop::payment(Client* client_ptr) {
 	std::cout << "\nYour order is complete. Please wait for an email with payment confirmation.\n";
 }
 
-void Shop::summaryOfOrder(Client* client_ptr) {
-	client_ptr->koszyk.printCart();
+void Shop::summaryOfOrder(Client &client) {
+	client.koszyk.printCart();
 	std::cout << "Your total price is: ";
-	std::cout << client_ptr->koszyk.getTotalPrice();
+	std::cout << client.koszyk.getTotalPrice();
 	std::cout << std::endl;
-	client_ptr->displayAddress();
+	client.displayAddress();
 
 	std::fstream myFile;
 
 	myFile.open("podsumowanie.csv", std::ios::out);
 	
-	for (auto it = client_ptr->koszyk.getCurrentCart().begin(); it != client_ptr->koszyk.getCurrentCart().end(); it++) {
-		/*std::cin >> it->first->getName()
-			>> it->first->getCategory()
-			>> it->first->getSupplier()
-			>> std::to_string(it->first->getPrice());*/
-
-		myFile << it->first->getName() << ", "
-			<< it->first->getCategory() << ", "
-			<< it->first->getSupplier() << ", "
-			<< std::to_string(it->first->getPrice()) << "\n ";
+	if (!myFile.good()) {
+		std::cout << "Jest kiepsko.. \n";
 	}
+	//for (auto it = client.koszyk.getCurrentCart().begin(); it != client.koszyk.getCurrentCart().end(); it++) {
+	//	/*std::cin >> it->first->getName()
+	//		>> it->first->getCategory()
+	//		>> it->first->getSupplier()
+	//		>> std::to_string(it->first->getPrice());*/
+
+	for (const auto& i : client.koszyk.getCurrentCart()) {
+		myFile << i.first->getName() << ", "
+			<< i.first->getCategory() << ", "
+			<< i.first->getSupplier() << ", "
+			<< std::to_string(i.first->getPrice()) << "\n ";
+	
+	}
+
 	myFile.close();
 
 	/*std::cout << "Do you want to finish shopping?\n\n";

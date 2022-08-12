@@ -69,3 +69,8 @@ void Client::displayAddress()
 		<< billingAddress.zipCode << std::endl;
 	std::cout << std::endl;
 }
+
+Client::~Client()
+{
+	std::cout << "Destruktor klienta" << std::endl;
+}

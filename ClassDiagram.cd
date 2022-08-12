@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Admin" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABSAAAAAAAAAAAAA=</HashCode>
+      <FileName>admin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Cart">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAIAAAQAAAAAQBAAEAAAAAAAEAIAAgIAgA=</HashCode>
+      <FileName>cart.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Client" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAQAAAAAAEAgAAAEEAAAAEAEIAIAAAAAAAABAIA=</HashCode>
+      <FileName>client.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DisplayConsole">
+    <Position X="7" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AADACAAIAIgAACAAAAAAAQAAAAEkAAAAAIAAASAAAIA=</HashCode>
+      <FileName>displayConsole.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Product" Collapsed="true">
+    <Position X="8.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAgAAAAACACAARAAAAAEAABAgIAMAAAAAAA=</HashCode>
+      <FileName>product.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Shop">
+    <Position X="5.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAEAAACAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>shop.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Stock">
+    <Position X="9" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAAAAAAgAAgAACCACAAgAAAAAAAAAAKACAAAAA=</HashCode>
+      <FileName>stock.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="User" Collapsed="true">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAEAAAAAAAAIAAAAAAAEAAAAAAAAAgAAAIA=</HashCode>
+      <FileName>user.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface" Collapsed="true">
+    <Position X="8.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>userInterface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
